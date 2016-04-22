@@ -1,7 +1,7 @@
 # bemtest-net
 эксперименты по скрещиванию БЭМ и .NET
 
-## Шаблонизация bemhtml.js на C#
+## Шаблонизация bemhtml.js на C&#35;
 
 В проекте [лежит bemxjst](ConsoleApplication/bemhtml.js), в [отдельном файле](ConsoleApplication/templates.bemhtml.js) лежат шаблоны.
 
