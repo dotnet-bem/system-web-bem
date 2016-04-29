@@ -5,6 +5,7 @@ require("any-promise/register")("bluebird");
 var gulp = require('gulp'),
     del = require('del'),
     concat = require('gulp-concat'),
+    debug = require('gulp-debug'),
     bem = require('@bem/gulp');
 
 // Создаём хелпер для сборки проекта
@@ -25,13 +26,13 @@ gulp.task('clean', function () {
 });
 
 gulp.task('bemhtml', function() {
-    return bundle.src({ tech: 'js', extensions: ['.js'] })
+    return bundle.src({ tech: 'bemhtml', extensions: ['.bemhtml.js'] })
+        .pipe(debug()) // Print out all found files
         .pipe(concat('all.min.js'))
         .pipe(gulp.dest('Bem/desktop.bundles/index'));
 });
 
 gulp.task('scripts', function () {
-
     return gulp.src('Bem/desktop.blocks/**/*.js')
       .pipe(concat('all.min.js'))
       .pipe(gulp.dest('Bem/desktop.bundles/index'));
