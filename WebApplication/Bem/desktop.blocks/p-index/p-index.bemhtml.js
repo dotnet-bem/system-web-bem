@@ -1,0 +1,1 @@
+﻿block('p-index').content()('test page');

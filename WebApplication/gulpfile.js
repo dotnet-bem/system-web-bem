@@ -1,20 +1,41 @@
-﻿var gulp = require('gulp');
-var concat = require('gulp-concat');
-var del = require('del');
+﻿/// <binding BeforeBuild='clean' />
 
-var config = {
-    src: ['Bem/desktop.blocks/**/*.js']
-}
+require("any-promise/register")("bluebird");
+
+var gulp = require('gulp'),
+    del = require('del'),
+    concat = require('gulp-concat'),
+    bem = require('@bem/gulp');
+
+// Создаём хелпер для сборки проекта
+var project = bem({
+    bemconfig: {
+        'Bem/common.blocks': { scheme: 'nested' },
+        'Bem/desktop.blocks': { scheme: 'nested' }
+    }
+});
+
+//// Создаём хелпер для сборки бандла
+var bundle = project.bundle({
+    path: 'Bem/desktop.bundles/index',
+    decl: 'index.bemjson.js'
+});
 
 gulp.task('clean', function () {
-    return del(['Bem/desktop.bundles/**/*.js']);
+    return del(['Bem/desktop.bundles/**/*.*', '!Bem/desktop.bundles/**/*.bemjson.js']);
 });
 
-gulp.task('scripts', ['clean'], function () {
+gulp.task('bemhtml', function() {
+    return bundle.src({ tech: 'js', extensions: ['.js'] })
+        .pipe(concat('all.min.js'))
+        .pipe(gulp.dest('Bem/desktop.bundles/index'));
+});
 
-    return gulp.src(config.src)
+gulp.task('scripts', function () {
+
+    return gulp.src('Bem/desktop.blocks/**/*.js')
       .pipe(concat('all.min.js'))
-      .pipe(gulp.dest('app/'));
+      .pipe(gulp.dest('Bem/desktop.bundles/index'));
 });
 
-gulp.task('default', ['scripts'], function () { });
+//gulp.task('default', [], function () { });

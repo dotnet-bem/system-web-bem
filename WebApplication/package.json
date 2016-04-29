@@ -1,7 +1,13 @@
 {
-	"version": "1.0.0",
-	"name": "bemtest-net",
-	"private": true,
-	"devDependencies": {
-	}
+  "version": "1.0.0",
+  "name": "bemtest-net",
+  "private": true,
+  "devDependencies": {
+    "@bem/gulp": "0.0.6",
+    "any-promise": "^1.1.0",
+    "bluebird": "^3.3.5",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0"
+  }
 }
