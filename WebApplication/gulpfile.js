@@ -10,7 +10,6 @@ var gulp = require('gulp'),
 // Создаём хелпер для сборки проекта
 var project = bem({
     bemconfig: {
-        'Bem/common.blocks': { scheme: 'nested' },
         'Bem/desktop.blocks': { scheme: 'nested' }
     }
 });

@@ -1,1 +1,1 @@
-﻿block('p-index').content()('test page');
+block('p-index').content()('test page');
