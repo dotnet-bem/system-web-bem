@@ -8,6 +8,7 @@
     "bluebird": "^3.3.5",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0"
+    "gulp-concat": "^2.6.0",
+    "gulp-debug": "^2.1.2"
   }
 }
