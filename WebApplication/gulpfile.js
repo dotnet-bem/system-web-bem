@@ -6,6 +6,8 @@ var gulp = require('gulp'),
     del = require('del'),
     concat = require('gulp-concat'),
     debug = require('gulp-debug'),
+    through2 = require('through2').obj,
+    bemhtml = require('bem-xjst').bemhtml,
     bem = require('@bem/gulp');
 
 // Создаём хелпер для сборки проекта
@@ -28,7 +30,14 @@ gulp.task('clean', function () {
 gulp.task('bemhtml', function() {
     return bundle.src({ tech: 'bemhtml', extensions: ['.bemhtml.js'] })
         .pipe(debug()) // Print out all found files
-        .pipe(concat('all.min.js'))
+        .pipe(concat(bundle.name() + '.bemhtml.js'))
+        .pipe(through2(function(file, encoding, callback) {
+            var src = file.contents.toString(encoding),
+                bundle = bemhtml.generate(src);
+
+            file.contents = new Buffer(bundle, encoding);
+            callback(null, file);
+        }))
         .pipe(gulp.dest('Bem/desktop.bundles/index'));
 });
 

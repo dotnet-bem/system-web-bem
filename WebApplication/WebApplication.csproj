@@ -66,6 +66,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bem\desktop.blocks\b-header\b-header.bemhtml.js" />
+    <Content Include="Bem\desktop.blocks\p-index\p-index.bemhtml.js" />
+    <Content Include="Bem\desktop.blocks\p-index\p-index.deps.js" />
+    <Content Include="Bem\desktop.bundles\index\index.bemjson.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <None Include="Web.Debug.config">
@@ -82,10 +86,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Bem\desktop.blocks\" />
-    <Folder Include="Bem\desktop.bundles\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
