@@ -1,5 +1,4 @@
-﻿/// <binding BeforeBuild='clean' />
-
+/// <binding BeforeBuild='clean' AfterBuild='bemhtml' />
 require("any-promise/register")("bluebird");
 
 var gulp = require('gulp'),
