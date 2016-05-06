@@ -2,13 +2,16 @@
 using System.Threading.Tasks;
 using EdgeJs;
 
-namespace BemDotNet
+namespace BemDotNet.Engine
 {
-	public class Bemhtml
+    /// <summary>
+    /// JS template wrapper
+    /// </summary>
+	public class BemhtmlTemplate
 	{
         private readonly Func<object, Task<object>> func;
 
-        public Bemhtml(string bundle)
+        public BemhtmlTemplate(string bundle)
 		{
 			func = Edge.Func(bundle + ";return function (data, cb) { cb(null, exports.apply(data));}");
 		}

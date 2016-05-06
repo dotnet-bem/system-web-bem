@@ -1,22 +1,21 @@
-﻿using System.IO;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using BemDotNet.Engine;
 
 namespace BemDotNet
 {
     public class BemhtmlResult : ActionResult
     {
+        private static readonly BemhtmlEngine engine = new BemhtmlEngine();
+
         public object Bemjson { get; set; }
+
         public override void ExecuteResult(ControllerContext context)
         {
-            string bundle =
-                File.ReadAllText(@"C:\projects\bemtest-net\WebApplication\Bem\desktop.bundles\index\index.bemhtml.js");
-            Bemhtml bemhtml = new Bemhtml(bundle);
-
-            var html = bemhtml.Apply(Bemjson);
-            html.Wait();
+            var task = engine.Render("index", Bemjson);
+            task.Wait();
 
             context.HttpContext.Response.Clear();
-            context.HttpContext.Response.Write(html.Result as string ?? string.Empty);
+            context.HttpContext.Response.Write(task.Result as string ?? string.Empty);
         }
     }
 }
