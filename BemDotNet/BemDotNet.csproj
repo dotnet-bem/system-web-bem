@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\BemhtmlBundleMapper.cs" />
     <Compile Include="Engine\BemhtmlTemplate.cs" />
     <Compile Include="Engine\BemhtmlEngine.cs" />
     <Compile Include="BemhtmlResult.cs" />

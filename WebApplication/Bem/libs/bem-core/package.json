@@ -1,0 +1,73 @@
+{
+  "name": "bem-core",
+  "version": "2.9.1",
+  "private": true,
+  "description": "bem-core Library",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bem/bem-core.git"
+  },
+  "keywords": [
+    "bem",
+    "core"
+  ],
+  "author": "Sergey Belov <peimei@ya.ru>",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "bem-environ": "~1.4.0",
+    "bem-xjst": "0.9.0",
+    "ym": "0.1.2"
+  },
+  "devDependencies": {
+    "bem-naming": "1.0.0",
+    "bem-walk": "1.0.0-alpha1",
+    "borschik-tech-cleancss": "2.1.0",
+    "bower": "^1.5.2",
+    "chai": "^3.2.0",
+    "chai-as-promised": "^5.1.0",
+    "enb": "^1.0.1",
+    "enb-bem-docs": "0.11.0",
+    "enb-bem-examples": "1.0.1",
+    "enb-bem-i18n": "^1.1.0",
+    "enb-bem-specs": "0.9.0",
+    "enb-bem-techs": "^2.1.0",
+    "enb-bem-tmpl-specs": "^1.1.0",
+    "enb-bemxjst": "^6.2.0",
+    "enb-bemxjst-i18n": "1.0.0-beta3",
+    "enb-bh": "^1.1.0",
+    "enb-bh-i18n": "1.0.0-beta2",
+    "enb-borschik": "^2.1.0",
+    "enb-css": "^1.0.2",
+    "enb-js": "^1.1.0",
+    "enb-magic-factory": "^0.5.0",
+    "enb-magic-platform": "0.6.0",
+    "git-hooks": "~1.0.2",
+    "istanbul": "~0.4.2",
+    "jscs": "^2.5.1",
+    "jscs-bem": "^0.2.0",
+    "jshint": "^2.9.1",
+    "jshint-groups": "0.8.0",
+    "mocha": "~2.4.5",
+    "vow": "0.4.12"
+  },
+  "scripts": {
+    "start": "magic server",
+    "lint": "jshint-groups && jscs .",
+    "test": "npm run lint && npm run test-all",
+    "test-all": "npm run test-i18n && npm run test-i-bem && npm run test-tmpl && npm run test-js && npm run test-dist",
+    "test-js": "bower i && magic run specs",
+    "test-dist": "npm run build-dist-fixtures && node_modules/enb-bem-specs/node_modules/.bin/mocha-phantomjs test/dist/fixtures/*.html",
+    "test-tmpl": "magic run tmpl-specs",
+    "test-i18n": "mocha -R spec common.blocks/i18n/*.test.js",
+    "test-i-bem": "npm run test-bemhtml && npm run test-bemtree && npm run test-old-i18n",
+    "test-bemhtml": "mocha --ui tdd -R spec common.blocks/i-bem/i-bem.bemhtml.test/*-test.js",
+    "test-bemtree": "mocha -R spec common.blocks/i-bem/i-bem.bemtree.test/test.js",
+    "test-old-i18n": "mocha --ui tdd -R spec common.blocks/i-bem/__i18n/test/*-test.js common.blocks/i-bem/__i18n/i-bem__i18n.bemhtml.test/*-test.js",
+    "bundles": "magic make *.bundles/*",
+    "fixtures": "magic run tests",
+    "examples": "magic run examples",
+    "docs": "magic run docs",
+    "dist": "magic make dist/desktop dist/touch",
+    "build-dist-fixtures": "npm run dist && node test/dist/build-fixtures.js"
+  }
+}

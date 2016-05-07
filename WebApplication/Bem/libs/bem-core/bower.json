@@ -1,0 +1,28 @@
+{
+  "name": "bem-core",
+  "version": "2.9.1",
+  "description": "bem-core Library",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bem/bem-core.git"
+  },
+  "keywords": [
+    "bem",
+    "core"
+  ],
+  "authors": [
+    "Sergey Belov <peimei@ya.ru>"
+  ],
+  "main": "",
+  "devDependencies": {
+    "bem-pr": "narqo/bem-pr#0.12.0"
+  },
+  "license": "MPL-2.0",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "libs",
+    "tools",
+    "*.bundles"
+  ]
+}

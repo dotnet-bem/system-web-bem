@@ -1,17 +1,25 @@
-/// <binding BeforeBuild='clean' AfterBuild='bemhtml' />
+/// <binding BeforeBuild='clean' AfterBuild='build' />
 require("any-promise/register")("bluebird");
 
 var gulp = require('gulp'),
     del = require('del'),
     concat = require('gulp-concat'),
+    stylus = require('gulp-stylus'),
     debug = require('gulp-debug'),
     through2 = require('through2').obj,
+    merge = require('merge2'),
     bemhtml = require('bem-xjst').bemhtml,
     bem = require('@bem/gulp');
 
 // Создаём хелпер для сборки проекта
 var project = bem({
     bemconfig: {
+        'Bem/libs/bem-core/common.blocks': { scheme: 'nested' },
+        'Bem/libs/bem-core/desktop.blocks': { scheme: 'nested' },
+        'Bem/libs/bem-components/common.blocks': { scheme: 'nested' },
+        'Bem/libs/bem-components/desktop.blocks': { scheme: 'nested' },
+        'Bem/libs/bem-components/design/common.blocks': { scheme: 'nested' },
+        'Bem/libs/bem-components/design/desktop.blocks': { scheme: 'nested' },
         'Bem/desktop.blocks': { scheme: 'nested' }
     }
 });
@@ -27,8 +35,11 @@ gulp.task('clean', function () {
 });
 
 gulp.task('bemhtml', function() {
-    return bundle.src({ tech: 'bemhtml', extensions: ['.bemhtml.js'] })
+    return bundle.src({ tech: 'bemhtml', extensions: ['.bemhtml', '.bemhtml.js'] })
         .pipe(debug()) // Print out all found files
+        .pipe(through2(function (file, enc, cb) {
+            return file.basename === 'i-bem.bemhtml' ? cb(null) : cb(null, file);
+        }))
         .pipe(concat(bundle.name() + '.bemhtml.js'))
         .pipe(through2(function(file, encoding, callback) {
             var src = file.contents.toString(encoding),
@@ -41,9 +52,22 @@ gulp.task('bemhtml', function() {
 });
 
 gulp.task('scripts', function () {
-    return gulp.src('Bem/desktop.blocks/**/*.js')
-      .pipe(concat('all.min.js'))
+    return merge(
+            gulp.src(require.resolve('ym')),
+            bundle.src({
+                tech: 'js',
+                extensions: ['.js', '.vanilla.js', '.browser.js']
+            })
+        )
+        .pipe(concat(bundle.name() + '.js'))
+        .pipe(gulp.dest('Bem/desktop.bundles/index'));
+});
+
+gulp.task('styles', function () {
+    return bundle.src({ tech: 'styl', extensions: ['.styl'] })
+      .pipe(stylus())
+      .pipe(concat(bundle.name() + '.css'))
       .pipe(gulp.dest('Bem/desktop.bundles/index'));
 });
 
-//gulp.task('default', [], function () { });
+gulp.task('build', ['bemhtml', 'scripts', 'styles'], function () { });
