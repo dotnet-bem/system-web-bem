@@ -12,26 +12,26 @@
         {
             elem: 'body',
             content: [
-            { block: 'b-header' },
-            { block: 'b-content' },
-            {
-                elem: 'test-button',
-                content: {
-                    block: 'button',
-                    mods: { theme: 'islands', size: 'm', type: 'link' },
-                    url: 'https://bem.info',
-                    text: 'Попробуй БЭМ'
-                }
-            },
-            {
-                elem: 'test-button',
-                content: {
-                    block: 'input',
-                    mods: { theme: 'islands', size: 'm' },
-                    placeholder: 'Введите имя'
-                }
-            },
-            { elem: 'js', url: '/Bem/desktop.bundles/index/index.js' }
+                { block: 'b-header' },
+                { block: 'b-content' },
+                {
+                    elem: 'test-button',
+                    content: {
+                        block: 'button',
+                        mods: { theme: 'islands', size: 'm', type: 'link' },
+                        url: 'https://bem.info',
+                        text: 'Попробуй БЭМ'
+                    }
+                },
+                {
+                    elem: 'test-button',
+                    content: {
+                        block: 'input',
+                        mods: { theme: 'islands', size: 'm' },
+                        placeholder: 'Введите имя'
+                    }
+                },
+                { elem: 'js', url: '/Bem/desktop.bundles/index/index.js' }
             ]
         }
         ];
