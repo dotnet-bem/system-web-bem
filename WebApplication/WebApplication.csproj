@@ -120,7 +120,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Bem\libs\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BemDotNet\BemDotNet.csproj">
       <Project>{3C5830C5-377F-49F9-B0AC-F578860F5710}</Project>

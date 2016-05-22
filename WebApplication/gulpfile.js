@@ -36,10 +36,6 @@ gulp.task('clean', function () {
 
 gulp.task('bemhtml', function() {
     return bundle.src({ tech: 'bemhtml', extensions: ['.bemhtml', '.bemhtml.js'] })
-        .pipe(debug()) // Print out all found files
-        .pipe(through2(function (file, enc, cb) {
-            return file.basename === 'i-bem.bemhtml' ? cb(null) : cb(null, file);
-        }))
         .pipe(concat(bundle.name() + '.bemhtml.js'))
         .pipe(through2(function(file, encoding, callback) {
             var src = file.contents.toString(encoding),
