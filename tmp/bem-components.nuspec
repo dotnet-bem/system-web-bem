@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>bem-components</id>
+        <title>BEM Components</title>
+        <version>3.0.0</version>
+        <authors>BEM team</authors>
+        <owners>dima117a</owners>
+        <copyright>YANDEX LLC, 2016</copyright>
+        <licenseUrl>https://github.com/bem/bem-components/blob/v3/LICENSE.txt</licenseUrl>
+        <projectUrl>https://github.com/bem/bem-components</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/bem/bem-identity/master/sign/_theme/sign_theme_spots.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>BEM Components Library</description>
+        <summary>BEM Components is an open-source library that provides a set of ready-made visual components (blocks) for creating web interfaces.</summary>
+        <tags>bem components</tags>
+        <dependencies>
+            <dependency id="bem-core" version="3.0.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="*.md" target="content\Bem\libs\bem-components" />
+        <file src="*.txt" target="content\Bem\libs\bem-components" />
+        <file src="**\common.blocks\**\*.*" target="content\Bem\libs\bem-components" />
+        <file src="**\desktop.blocks\**\*.*" target="content\Bem\libs\bem-components" />
+        <file src="**\touch.blocks\**\*.*" target="content\Bem\libs\bem-components" />
+    </files>
+</package>
