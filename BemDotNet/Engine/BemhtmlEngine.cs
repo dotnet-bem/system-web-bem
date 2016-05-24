@@ -41,13 +41,5 @@ namespace BemDotNet.Engine
         {
             return GetTemplate(name).Apply(data);
         }
-
-        /*
-         * todo:
-            - config
-            - exceptions
-            - debug
-         */
-
     }
 }
