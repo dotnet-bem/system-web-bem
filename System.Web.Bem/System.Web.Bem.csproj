@@ -7,8 +7,8 @@
     <ProjectGuid>{3C5830C5-377F-49F9-B0AC-F578860F5710}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BemDotNet</RootNamespace>
-    <AssemblyName>BemDotNet</AssemblyName>
+    <RootNamespace>System.Web.Bem</RootNamespace>
+    <AssemblyName>System.Web.Bem</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -101,6 +101,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="todo.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

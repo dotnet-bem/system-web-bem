@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using BemDotNet.Engine;
+using System.Web.Bem.Engine;
 
-namespace BemDotNet
+namespace System.Web.Bem
 {
     public class BemhtmlResult : ActionResult
     {

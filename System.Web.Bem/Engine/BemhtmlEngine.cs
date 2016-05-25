@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 
-namespace BemDotNet.Engine
+namespace System.Web.Bem.Engine
 {
     /// <summary>
     /// Template manager: init/cache/find

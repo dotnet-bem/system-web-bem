@@ -124,9 +124,9 @@
     <Folder Include="Bem\libs\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BemDotNet\BemDotNet.csproj">
-      <Project>{3C5830C5-377F-49F9-B0AC-F578860F5710}</Project>
-      <Name>BemDotNet</Name>
+    <ProjectReference Include="..\System.Web.Bem\System.Web.Bem.csproj">
+      <Project>{3c5830c5-377f-49f9-b0ac-f578860f5710}</Project>
+      <Name>System.Web.Bem</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

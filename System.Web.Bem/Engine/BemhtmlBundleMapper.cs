@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace BemDotNet.Engine
+namespace System.Web.Bem.Engine
 {
     /// <summary>
     /// Bundle name to path mapper

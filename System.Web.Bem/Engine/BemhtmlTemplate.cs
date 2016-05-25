@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using EdgeJs;
 
-namespace BemDotNet.Engine
+namespace System.Web.Bem.Engine
 {
     /// <summary>
     /// JS template wrapper

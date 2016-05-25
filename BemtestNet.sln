@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "Conso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{D2EB2AAA-835F-454C-9AFA-26025D2E13DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BemDotNet", "BemDotNet\BemDotNet.csproj", "{3C5830C5-377F-49F9-B0AC-F578860F5710}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Web.Bem", "System.Web.Bem\System.Web.Bem.csproj", "{3C5830C5-377F-49F9-B0AC-F578860F5710}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
