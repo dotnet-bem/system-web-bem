@@ -1,6 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using System.IO;
 using System.Threading.Tasks;
+using System.Web.Bem.BundleMappers;
+using System.Web.Bem.Configuration;
 using System.Web.Hosting;
 
 namespace System.Web.Bem.Engine
@@ -10,12 +12,13 @@ namespace System.Web.Bem.Engine
     /// </summary>
     public class BemhtmlEngine
     {
-        private readonly BemhtmlBundleMapper mapper;
+        private readonly Mapper mapper;
         private readonly ConcurrentDictionary<string, BemhtmlTemplate> cache;
 
         public BemhtmlEngine()
         {
-            mapper = new BemhtmlBundleMapper();
+            var config = BemConfiguration.Load();
+            mapper = Mapper.Create(config);
             cache = new ConcurrentDictionary<string, BemhtmlTemplate>();
         }
 
@@ -25,7 +28,7 @@ namespace System.Web.Bem.Engine
         /// <param name="bundleName"></param>
         public BemhtmlTemplate GetTemplate(string bundleName)
         {
-            var path = mapper.GetPathByName(bundleName);
+            var path = mapper.Map(bundleName);
             return cache.GetOrAdd(path, InitTemplate);
         }
 
