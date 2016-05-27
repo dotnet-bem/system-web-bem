@@ -26,8 +26,8 @@ var project = bem({
 
 //// Создаём хелпер для сборки бандла
 var bundle = project.bundle({
-    path: 'Bem/desktop.bundles/index',
-    decl: 'index.bemjson.js'
+    path: 'Bem/desktop.bundles/default',
+    decl: 'default.bemjson.js'
 });
 
 gulp.task('clean', function () {
@@ -44,7 +44,7 @@ gulp.task('bemhtml', function() {
             file.contents = new Buffer(bundle, encoding);
             callback(null, file);
         }))
-        .pipe(gulp.dest('Bem/desktop.bundles/index'));
+        .pipe(gulp.dest('Bem/desktop.bundles/default'));
 });
 
 gulp.task('scripts', function () {
@@ -56,14 +56,14 @@ gulp.task('scripts', function () {
             })
         )
         .pipe(concat(bundle.name() + '.js'))
-        .pipe(gulp.dest('Bem/desktop.bundles/index'));
+        .pipe(gulp.dest('Bem/desktop.bundles/default'));
 });
 
 gulp.task('styles', function () {
     return bundle.src({ tech: 'styl', extensions: ['.styl'] })
       .pipe(stylus())
       .pipe(concat(bundle.name() + '.css'))
-      .pipe(gulp.dest('Bem/desktop.bundles/index'));
+      .pipe(gulp.dest('Bem/desktop.bundles/default'));
 });
 
 gulp.task('build', ['bemhtml', 'scripts', 'styles'], function () { });

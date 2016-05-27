@@ -18,7 +18,7 @@ namespace System.Web.Bem.Configuration
 
         #region properties
 
-        [ConfigurationProperty("DefaultBundle", DefaultValue = "index")]
+        [ConfigurationProperty("DefaultBundle", DefaultValue = "default/default.bemhtml.js")]
         public string DefaultBundle {
             get { return this["DefaultBundle"] as string; }
         }

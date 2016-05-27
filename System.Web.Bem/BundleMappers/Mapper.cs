@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Web.Bem.Configuration;
+﻿using System.Web.Bem.Configuration;
+using System.Web.Mvc;
 
 namespace System.Web.Bem.BundleMappers
 {
@@ -16,11 +16,8 @@ namespace System.Web.Bem.BundleMappers
                 case "Single":
                     mapper = new Single();
                     break;
-                case "ByBlock":
-                    mapper = new ByBlock();
-                    break;
-                case "ByMap":
-                    mapper = new ByMap();
+                case "ByController":
+                    mapper = new ByController();
                     break;
                 default:
                     var type = Type.GetType(config.Mapper, true);
@@ -46,12 +43,7 @@ namespace System.Web.Bem.BundleMappers
             RootDir = config.RootDir;
         }
 
-        public abstract string Map(string blockName);
-
-        protected virtual string GetPathByName(string blockName)
-        {
-            return Path.Combine(blockName, blockName + ".bemhtml.js");
-        }
+        public abstract string Map(ControllerContext context);
 
         #endregion
     }

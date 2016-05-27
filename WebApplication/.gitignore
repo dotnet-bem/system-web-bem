@@ -1,1 +1,2 @@
 Bem/*bundles/**/*
+!Bem/*bundles/**/*.bemjson.js

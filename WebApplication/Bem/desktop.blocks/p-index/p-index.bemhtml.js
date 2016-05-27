@@ -6,7 +6,7 @@
         {
             elem: 'head',
             content: [
-                { elem: 'css', url: '/Bem/desktop.bundles/index/index.css' }
+                { elem: 'css', url: '/Bem/desktop.bundles/default/default.css' }
             ]
         },
         {
@@ -31,7 +31,7 @@
                         placeholder: 'Введите имя'
                     }
                 },
-                { elem: 'js', url: '/Bem/desktop.bundles/index/index.js' }
+                { elem: 'js', url: '/Bem/desktop.bundles/default/default.js' }
             ]
         }
         ];

@@ -11,7 +11,7 @@ namespace System.Web.Bem
 
         public override void ExecuteResult(ControllerContext context)
         {
-            var task = engine.Render("index", Bemjson);
+            var task = engine.Render(context, Bemjson);
             task.Wait();
 
             context.HttpContext.Response.Clear();

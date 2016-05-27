@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Bem.BundleMappers;
 using System.Web.Bem.Configuration;
 using System.Web.Hosting;
+using System.Web.Mvc;
 
 namespace System.Web.Bem.Engine
 {
@@ -25,10 +26,9 @@ namespace System.Web.Bem.Engine
         /// <summary>
         /// Create and cache bundle .NET wrapper
         /// </summary>
-        /// <param name="bundleName"></param>
-        public BemhtmlTemplate GetTemplate(string bundleName)
+        public BemhtmlTemplate GetTemplate(ControllerContext context)
         {
-            var path = mapper.Map(bundleName);
+            var path = mapper.Map(context);
             return cache.GetOrAdd(path, InitTemplate);
         }
 
@@ -40,9 +40,9 @@ namespace System.Web.Bem.Engine
             return new BemhtmlTemplate(content);
         }
 
-        public Task<object> Render(string name, object data)
+        public Task<object> Render(ControllerContext context, object data)
         {
-            return GetTemplate(name).Apply(data);
+            return GetTemplate(context).Apply(data);
         }
     }
 }
