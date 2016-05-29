@@ -1,4 +1,6 @@
-﻿using System.Web.Bem.Configuration;
+﻿using System.IO;
+using System.Web.Bem.Configuration;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace System.Web.Bem.BundleMappers
@@ -40,10 +42,21 @@ namespace System.Web.Bem.BundleMappers
         public virtual void Init(BemConfiguration config)
         {
             DefaultBundle = config.DefaultBundle;
-            RootDir = config.RootDir;
+            RootDir = HostingEnvironment.MapPath(config.RootDir);
         }
 
-        public abstract string Map(ControllerContext context);
+        public virtual string Map(ControllerContext context)
+        {
+            var bundleName = GetBundleName(context);
+            return GetBundlePath(bundleName);
+        }
+
+        protected virtual string GetBundlePath(string bundleName)
+        {
+            return Path.Combine(RootDir, bundleName, bundleName + ".bemhtml.js");
+        }
+
+        protected abstract string GetBundleName(ControllerContext context);
 
         #endregion
     }

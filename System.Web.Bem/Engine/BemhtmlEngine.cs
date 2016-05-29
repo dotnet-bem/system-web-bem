@@ -32,9 +32,8 @@ namespace System.Web.Bem.Engine
             return cache.GetOrAdd(path, InitTemplate);
         }
 
-        private BemhtmlTemplate InitTemplate(string virtualPath)
+        private BemhtmlTemplate InitTemplate(string absolutePath)
         {
-            var absolutePath = HostingEnvironment.MapPath(virtualPath);
             var content = File.ReadAllText(absolutePath);
 
             return new BemhtmlTemplate(content);

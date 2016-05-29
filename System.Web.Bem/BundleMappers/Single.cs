@@ -5,9 +5,9 @@ namespace System.Web.Bem.BundleMappers
 {
     public class Single : Mapper
     {
-        public override string Map(ControllerContext context)
+        protected override string GetBundleName(ControllerContext context)
         {
-            return Path.Combine(RootDir, DefaultBundle);
+            return DefaultBundle;
         }
     }
 }
