@@ -13,12 +13,20 @@ namespace System.Web.Bem.Engine
     /// </summary>
     public class BemhtmlEngine
     {
+        private static readonly BemConfiguration config;
+        public static readonly BemhtmlEngine Instance;
+
         private readonly Mapper mapper;
         private readonly ConcurrentDictionary<string, BemhtmlTemplate> cache;
 
+        static BemhtmlEngine()
+        {
+            config = BemConfiguration.Load();
+            Instance = new BemhtmlEngine();
+        }
+
         public BemhtmlEngine()
         {
-            var config = BemConfiguration.Load();
             mapper = Mapper.Create(config);
             cache = new ConcurrentDictionary<string, BemhtmlTemplate>();
         }

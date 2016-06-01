@@ -60,10 +60,12 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('styles', function () {
-    return bundle.src({ tech: 'styl', extensions: ['.styl'] })
-      .pipe(stylus())
-      .pipe(concat(bundle.name() + '.css'))
-      .pipe(gulp.dest('Bem/desktop.bundles/default'));
+    return merge(
+            bundle.src({ tech: 'css', extensions: ['.css'] }),
+            bundle.src({ tech: 'styl', extensions: ['.styl'] }).pipe(stylus())
+        )
+        .pipe(concat(bundle.name() + '.css'))
+        .pipe(gulp.dest('Bem/desktop.bundles/default'));
 });
 
 gulp.task('build', ['bemhtml', 'scripts', 'styles'], function () { });

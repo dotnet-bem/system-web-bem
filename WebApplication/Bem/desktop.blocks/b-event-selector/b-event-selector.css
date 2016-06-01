@@ -1,0 +1,14 @@
+﻿.b-event-selector__field {
+    margin: 4px 8px;
+}
+
+.b-event-selector__label,
+.b-event-selector__control {
+    display: inline-block;
+}
+
+.b-event-selector__label {
+    line-height: 28px;
+    vertical-align: top;
+    margin-right: 8px;
+}

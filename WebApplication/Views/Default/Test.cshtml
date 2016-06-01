@@ -1,0 +1,18 @@
+﻿@model WebApplication.Models.TestModel
+
+@using System.Web.Bem.Helpers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+    <script src="~/Bem/desktop.bundles/default/default.js"></script>
+    <link rel="stylesheet" href="~/Bem/desktop.bundles/default/default.css"/>
+</head>
+<body>
+<div>
+    <p>This is rendered by Razor at @DateTime.Now.ToShortTimeString()</p>
+    @Html.Bem(new { block = "b-event-selector", data = Model })
+</div>
+</body>
+</html>

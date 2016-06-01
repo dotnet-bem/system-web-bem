@@ -1,1 +1,4 @@
-﻿module.exports = { block: 'p-index' };
+﻿module.exports = [
+    { block: 'p-index' },
+    { block: 'b-event-selector' }
+];
