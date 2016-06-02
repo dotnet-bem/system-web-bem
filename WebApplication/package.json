@@ -16,5 +16,9 @@
     "stylus": "^0.54.5",
     "through2": "^2.0.1",
     "ym": "^0.1.2"
+  },
+  "dependencies": {
+    "gulp-postcss": "^6.1.1",
+    "postcss-url": "^5.1.2"
   }
 }

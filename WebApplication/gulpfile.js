@@ -3,13 +3,16 @@ require("any-promise/register")("bluebird");
 
 var gulp = require('gulp'),
     del = require('del'),
+    path = require('path'),
     concat = require('gulp-concat'),
     stylus = require('gulp-stylus'),
     debug = require('gulp-debug'),
     through2 = require('through2').obj,
     merge = require('merge2'),
     bemhtml = require('bem-xjst').bemhtml,
-    bem = require('@bem/gulp');
+    bem = require('@bem/gulp'),
+    postcss = require('gulp-postcss'),
+    postcssUrl = require('postcss-url');
 
 // Создаём хелпер для сборки проекта
 var project = bem({
@@ -64,6 +67,15 @@ gulp.task('styles', function () {
             bundle.src({ tech: 'css', extensions: ['.css'] }),
             bundle.src({ tech: 'styl', extensions: ['.styl'] }).pipe(stylus())
         )
+        .pipe(postcss([
+            postcssUrl({
+                url: function(url, decl, from) {
+                    return path.relative(
+                        path.resolve(process.cwd(), bundle.path()),
+                        path.resolve(from, url)).replace(/\\/g, '/');
+                }
+            })
+        ]))
         .pipe(concat(bundle.name() + '.css'))
         .pipe(gulp.dest('Bem/desktop.bundles/default'));
 });
