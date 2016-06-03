@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("System.Web.Bem")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("BEM infrastructure for ASP.NET MVC applications")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Yandex LLC")]
 [assembly: AssemblyProduct("System.Web.Bem")]
 [assembly: AssemblyCopyright("Copyright © Yandex LLC, 2016")]
 [assembly: AssemblyTrademark("")]

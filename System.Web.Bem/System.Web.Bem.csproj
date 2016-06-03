@@ -106,6 +106,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="System.Web.Bem.nuspec" />
     <None Include="todo.md" />
   </ItemGroup>
   <ItemGroup />

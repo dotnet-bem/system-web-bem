@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>System.Web.Bem</id>
+    <version>0.1.0</version>
+    <title>System.Web.Bem</title>
+    <authors>Dmitry Andriyanov</authors>
+    <owners>dima117</owners>
+    <licenseUrl>https://github.com/dima117/bemtest-net/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/dima117/bemtest-net</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/bem/bem-identity/master/sign/_theme/sign_theme_spots.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>BEM infrastructure for ASP.NET MVC applications</description>
+    <copyright>Copyright © Yandex LLC, 2016</copyright>
+    <tags>Bem, AspNet, Mvc, AspNetMvc</tags>
+  </metadata>
+</package>
