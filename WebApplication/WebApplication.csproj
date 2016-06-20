@@ -94,15 +94,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bem\.enb\make.js" />
     <Content Include="Bem\desktop.blocks\b-event-selector\b-event-selector.bemhtml.js" />
     <Content Include="Bem\desktop.blocks\b-event-selector\b-event-selector.css" />
     <Content Include="Bem\desktop.blocks\b-event-selector\b-event-selector.deps.js" />
     <Content Include="Bem\desktop.blocks\b-header\b-header.bemhtml.js" />
     <Content Include="Bem\desktop.blocks\p-index\p-index.bemhtml.js" />
     <Content Include="Bem\desktop.blocks\p-index\p-index.deps.js" />
-    <Content Include="Bem\desktop.bundles\default\default.bemjson.js" />
     <Content Include="Bem\desktop.bundles\default\default.css" />
     <Content Include="Bem\desktop.bundles\default\default.js" />
+    <Content Include="Bem\desktop.bundles\default\default.bemdecl.js" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
@@ -117,7 +118,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="gulpfile.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
