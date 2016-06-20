@@ -1,0 +1,5 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="BuildBemBundles" AfterTargets="AfterBuild">
+    <Exec  Command="powershell ..\node_modules\.bin\enb make --dir Bem" />
+  </Target>
+</Project>

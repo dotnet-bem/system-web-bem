@@ -14,4 +14,8 @@
     <copyright>Copyright © Yandex LLC, 2016</copyright>
     <tags>Bem, AspNet, Mvc, AspNetMvc</tags>
   </metadata>
+  <files>
+    <file src="tools\Install.ps1" target="tools\Install.ps1" />
+    <file src="build\System.Web.Bem.targets" target="build\System.Web.Bem.targets" />
+  </files>
 </package>
