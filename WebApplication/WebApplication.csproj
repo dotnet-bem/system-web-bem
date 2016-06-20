@@ -101,8 +101,6 @@
     <Content Include="Bem\desktop.blocks\b-header\b-header.bemhtml.js" />
     <Content Include="Bem\desktop.blocks\p-index\p-index.bemhtml.js" />
     <Content Include="Bem\desktop.blocks\p-index\p-index.deps.js" />
-    <Content Include="Bem\desktop.bundles\default\default.css" />
-    <Content Include="Bem\desktop.bundles\default\default.js" />
     <Content Include="Bem\desktop.bundles\default\default.bemdecl.js" />
     <Content Include="Bem\desktop.bundles\index\index.bemdecl.js" />
     <Content Include="Global.asax" />
