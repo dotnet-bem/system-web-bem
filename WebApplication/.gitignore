@@ -1,3 +1,4 @@
 Bem/*bundles/**/*
 Bem/.enb/tmp/**/*
 !Bem/*bundles/**/*.bemjson.js
+!Bem/*bundles/**/*.bemdecl.js

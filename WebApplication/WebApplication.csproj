@@ -104,6 +104,7 @@
     <Content Include="Bem\desktop.bundles\default\default.css" />
     <Content Include="Bem\desktop.bundles\default\default.js" />
     <Content Include="Bem\desktop.bundles\default\default.bemdecl.js" />
+    <Content Include="Bem\desktop.bundles\index\index.bemdecl.js" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
