@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>System.Web.Bem</id>
-    <version>0.1.0</version>
+    <version>1.0.0-alpha</version>
     <title>System.Web.Bem</title>
     <authors>Dmitry Andriyanov</authors>
     <owners>dima117</owners>
