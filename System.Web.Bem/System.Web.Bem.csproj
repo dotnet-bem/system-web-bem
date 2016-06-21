@@ -97,6 +97,9 @@
     <Content Include="edge\x86\node.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="package\content\Bem\.enb\make.js" />
+    <Content Include="package\content\Bem\desktop.blocks\example\example.bemhtml.js" />
+    <Content Include="package\content\Bem\desktop.bundles\default\default.bemdecl.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="edge\x64\edge_nativeclr.node">
@@ -105,12 +108,17 @@
     <None Include="edge\x86\edge_nativeclr.node">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Install.ps1" />
+    <None Include="package\content\Web.config.uninstall.xdt" />
+    <None Include="package\content\Web.config.install.xdt" />
+    <None Include="package\tools\Install.ps1" />
     <None Include="packages.config" />
     <None Include="System.Web.Bem.nuspec" />
     <None Include="todo.md" />
+    <None Include="package\build\System.Web.Bem.targets" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="package\content\Bem\libs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
