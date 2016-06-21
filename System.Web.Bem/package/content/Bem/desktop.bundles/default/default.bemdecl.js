@@ -1,0 +1,3 @@
+﻿exports.blocks = [
+    { name: 'example' }
+];

@@ -1,0 +1,1 @@
+﻿block('example').content()('This is an example block');

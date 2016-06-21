@@ -15,7 +15,8 @@
     <tags>Bem, AspNet, Mvc, AspNetMvc</tags>
   </metadata>
   <files>
-    <file src="tools\Install.ps1" target="tools\Install.ps1" />
-    <file src="build\System.Web.Bem.targets" target="build\System.Web.Bem.targets" />
+    <file src="package\content\**\*.*" target="content" />
+    <file src="package\build\*.*" target="build" />
+    <file src="package\tools\*.*" target="tools" />
   </files>
 </package>
