@@ -15,6 +15,7 @@
     <tags>Bem, AspNet, Mvc, AspNetMvc</tags>
   </metadata>
   <files>
+    <file src="bin\System.Web.Bem.dll" target="lib\net452" />
     <file src="package\content\**\*.*" target="content" />
     <file src="package\build\*.*" target="build" />
     <file src="package\tools\*.*" target="tools" />
