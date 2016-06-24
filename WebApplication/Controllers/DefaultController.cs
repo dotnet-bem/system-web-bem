@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Bem;
+using System.Web.Bem.Helpers;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -8,13 +9,7 @@ namespace WebApplication.Controllers
     {
         public ActionResult Index()
         {
-            return new BemhtmlResult
-            {
-                Bemjson = new
-                {
-                    block = "p-index"
-                }
-            };
+            return new BemhtmlResult(new { block = "p-index" });
         }
 
         public ActionResult Test()

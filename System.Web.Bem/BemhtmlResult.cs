@@ -9,6 +9,11 @@ namespace System.Web.Bem
 
         public object Bemjson { get; set; }
 
+        public BemhtmlResult(object bemjson)
+        {
+            Bemjson = bemjson;
+        }
+        
         public override void ExecuteResult(ControllerContext context)
         {
             var task = engine.Render(context, Bemjson);
