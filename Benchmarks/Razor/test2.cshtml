@@ -1,0 +1,17 @@
+﻿@using System.Web.Bem.Helpers
+@model Benchmarks.Schema.BemhtmlRoot
+
+<div class="root">
+
+    @foreach (var group in Model.items)
+    {
+        <ol class="group" title="@group.title">
+
+            @foreach (var item in group.content)
+            {
+                @Html.Bem(item)
+            }
+        </ol>
+    }
+</div>
+

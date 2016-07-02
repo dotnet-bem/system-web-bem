@@ -1,0 +1,19 @@
+﻿@model Benchmarks.Schema.BemhtmlRoot
+
+<div class="root">
+
+    @foreach(var group in Model.items)
+    {
+        <ol class="group" title="@group.title">
+
+            @foreach (var item in group.content)
+            {
+                <li class="item">
+                    <strong class="item__label">text:</strong>
+                    <span class="item__text">@item.text</span>
+                </li>
+            }
+        </ol>
+    }
+</div>
+
