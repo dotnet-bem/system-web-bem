@@ -4,7 +4,7 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
 
 ## Быстрый старт
 
-1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/) в свой проект ACP.NET MVC.
+1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/) в свой проект ASP.NET MVC.
   ```bash
   PM> Install-Package System.Web.Bem -Pre
   ```
@@ -76,8 +76,15 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
 ```
 
 ### Сборка
+Чтобы код блоков мог работать в приложении, блоки собирают в бандлы. Сборка бандла выполняется на основе декларации - специального файла с расширением `bemdecl.js`, где перечислены блоки, которые должны попасть в бандл. Пример декларации бандла:
 
-...
+```javascript
+exports.blocks = [
+  { name: 'block1' },
+  { name: 'block2' }
+];
+```
+Декларации находятся в папке `/Bem/desktop.bundles`, каждый бандл в своей папке. Например, `/Bem/desktop.bundles/default/default.bemdecl.js`. Во время сборки ищутся все декларации внутри папки `/Bem/desktop.bundles` и для каждой из них собираются бандлы технологий (шаблоны, js, css). Бандлы технологий имеют имя `<bundle_name>.<tech_ext>` (например, `default.bemhtml.js`) и сохраняются в папку, где находится декларация.
 
 ### Серверная шаблонизация
 
