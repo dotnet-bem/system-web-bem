@@ -84,7 +84,7 @@ exports.blocks = [
   { name: 'block2' }
 ];
 ```
-Декларации находятся в папке `/Bem/desktop.bundles`, каждый бандл в своей папке. Например, `/Bem/desktop.bundles/default/default.bemdecl.js`. Во время сборки ищутся все декларации внутри папки `/Bem/desktop.bundles` и для каждой из них собираются бандлы технологий (шаблоны, js, css). Бандлы технологий имеют имя `<bundle_name>.<tech_ext>` (например, `default.bemhtml.js`) и сохраняются в папку, где находится декларация.
+Декларации находятся в папке `/Bem/desktop.bundles`, каждый бандл в своей папке. Например, бандл "default" должен находиться в папке `/Bem/desktop.bundles/default/default.bemdecl.js`. Во время сборки ищутся все декларации внутри `/Bem/desktop.bundles` и для каждой из них собираются бандлы технологий (шаблоны, js, css). Бандлы технологий имеют имя `<bundle_name>.<tech_ext>` и сохраняются в папку, где находится декларация. Например, файл шаблонов (bemhtml.js) для бандла "default" будет иметь путь `/Bem/desktop.bundles/default/default.html.js`.
 
 ### Серверная шаблонизация
 
