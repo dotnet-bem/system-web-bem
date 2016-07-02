@@ -5,12 +5,12 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
 ## Быстрый старт
 
 1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/) в свой проект ACP.NET MVC.
-  ```
+  ```bash
   PM> Install-Package System.Web.Bem -Pre
   ```
 
 1. Верните из метода контроллера экземпляр класса `BemhtmlResult`, передав ему в конструктор нужный bemjson.
-  ```
+  ```cs
   using System.Web.Bem;
   ...
   public class DefaultController : Controller
@@ -23,7 +23,7 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
   ```
 
 1. Если нужно внутри Razor-шаблона вставить БЭМ-блок, используйте хелпер `@Html.Bem`, передав ему нужный bemjson.
-  ```
+  ```cs
   @Html.Bem(new { block = "my-block", data = Model })
   ```
 
@@ -36,9 +36,9 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
 
 Декларация бандла - файл с перечислением блоков, которые должны попасть в бандл. На основе декларации сборщик собирает бандл, учитывая зависимости блоков и уровни переопределения. Бандл собирается отдельно для каждой технологии. Во время работы приложения бандл шаблонов используется для формирования html (на сервере и клиенте), бандлы js и css подключаются на страницы и используются на клиенте. 
 
-BEMHTML - специальный шаблонизатор, который удобно использовать в БЭМ-проектах.
+[BEMHTML](https://github.com/bem/bem-xjst) - специальный шаблонизатор, который удобно использовать в БЭМ-проектах.
 
-System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC проектов. При установке в проект [NuGet пакета System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/):
+**System.Web.Bem** - БЭМ-инфрастурктура для ASP.NET MVC проектов. При установке в проект [NuGet пакета System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/):
 - из npm ставится сборщик [enb](https://ru.bem.info/toolbox/enb/) и нужные для сборки enb-модули;
 - добавляется папка `Bem` с файловой структурой БЭМ проекта и настройками для сборки с помощью enb;
 - добавляется дополнительный этап сборки: запуск enb - таким образом при компиляции C# в Visual Studio выполняется также и сборка БЭМ-бандлов;
@@ -79,10 +79,6 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC прое
 
 ...
 
-### Подключение библиотек с блоками
-
-...
-
 ### Серверная шаблонизация
 
 Возможны 3 варианта выбора бандла для шаблонизации ответа на http запрос:
@@ -100,6 +96,10 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC прое
 <bemSettings Mapper="MyApplication.MyNamespace.InnerNamespace.MyMapperClass" />
 ```
 Класс мэппера [должен быть унаследован](https://github.com/dima117/bemtest-net/blob/master/System.Web.Bem/BundleMappers/Mapper.cs) от `System.Web.Bem.BundleMappers.Mapper` и реализовывать метод `abstract string GetBundleName(ControllerContext context)`, получающий на вход контекст запроса и возвращающий название бандла. Также, при желании, можно переопределить метод `virtual string GetBundlePath(string bundleName)`, возвращающий по названию бандла путь к файлу с bemhtml шаблонами (по умолчанию формируется путь `<RootDir>\<bundleName>\<bundleName>.bemhtml.js`)
+
+### Подключение библиотек с блоками
+
+...
 
 ## Публикации
 - https://ru.bem.info/forum/1007/
