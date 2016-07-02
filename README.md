@@ -5,27 +5,27 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
 ## Быстрый старт
 
 1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/)
-```
-PM> Install-Package System.Web.Bem -Pre
-```
+  ```
+  PM> Install-Package System.Web.Bem -Pre
+  ```
 
-2. Верните из метода контроллера экземпляр класса `BemhtmlResult`, передав ему в конструктор нужный bemjson.
-```c#
-using System.Web.Bem;
-...
-public class DefaultController : Controller
-{
-	public ActionResult Index()
+1. Верните из метода контроллера экземпляр класса `BemhtmlResult`, передав ему в конструктор нужный bemjson.
+  ```
+  using System.Web.Bem;
+  ...
+  public class DefaultController : Controller
+  {
+    public ActionResult Index()
     {
-        return new BemhtmlResult(new { block = "p-index" });
+      return new BemhtmlResult(new { block = "p-index" });
     }
-}
-```
+  }
+  ```
 
-3. Если нужно внутри Razor-шаблона вставить БЭМ-блок, используйте хелпер `@Html.Bem`, передав ему нужный bemjson.
-```C#
- @Html.Bem(new { block = "my-block", data = Model })
-```
+1. Если нужно внутри Razor-шаблона вставить БЭМ-блок, используйте хелпер `@Html.Bem`, передав ему нужный bemjson.
+  ```
+  @Html.Bem(new { block = "my-block", data = Model })
+  ```
 
 ## Подробнее
 
