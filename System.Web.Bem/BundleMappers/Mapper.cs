@@ -42,7 +42,7 @@ namespace System.Web.Bem.BundleMappers
         public virtual void Init(BemConfiguration config)
         {
             DefaultBundle = config.DefaultBundle;
-            RootDir = HostingEnvironment.MapPath(config.RootDir);
+            RootDir = Path.IsPathRooted(config.RootDir) ? config.RootDir : HostingEnvironment.MapPath(config.RootDir);
         }
 
         public virtual string Map(ControllerContext context)
