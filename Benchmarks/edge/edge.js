@@ -26,11 +26,11 @@ var edgeNative;
 if (process.env.EDGE_NATIVE) {
     edgeNative = process.env.EDGE_NATIVE;
 }
-else if (process.platform === 'win32') {
-    edgeNative = './native/' + process.platform + '/' + process.arch + '/' + determineVersion() + '/' + (process.env.EDGE_USE_CORECLR ? 'edge_coreclr' : 'edge_nativeclr');
-}
 else if (fs.existsSync(builtEdge)) {
     edgeNative = builtEdge;
+}
+else if (process.platform === 'win32') {
+    edgeNative = path.resolve(__dirname, './native/' + process.platform + '/' + process.arch + '/' + determineVersion() + '/' + (process.env.EDGE_USE_CORECLR ? 'edge_coreclr' : 'edge_nativeclr'));
 }
 else {
     throw new Error('The edge native module is not available at ' + builtEdge 
@@ -45,6 +45,11 @@ if (edgeNative.match(/edge_coreclr\.node$/i)) {
     // how to compile literal C# at https://github.com/tjanczuk/edge-cs/blob/master/lib/edge-cs.js
     process.env.EDGE_USE_CORECLR = 1;
 }
+if (process.env.EDGE_USE_CORECLR && !process.env.EDGE_BOOTSTRAP_DIR && fs.existsSync(path.join(__dirname, 'bootstrap', 'bin', 'Release', 'netcoreapp1.0', 'bootstrap.dll'))) {
+    process.env.EDGE_BOOTSTRAP_DIR = path.join(__dirname, 'bootstrap', 'bin', 'Release', 'netcoreapp1.0');
+}
+
+process.env.EDGE_NATIVE = edgeNative;
 edge = require(edgeNative);
 
 exports.func = function(language, options) {
@@ -105,7 +110,11 @@ exports.func = function(language, options) {
 
         if (typeof options.compiler !== 'string') {
             throw new Error("The '" + compilerName + "' module required to compile the '" + language + "' language " +
-                "did not specify correct compiler assembly.");
+                "did not specify correct compiler package name or assembly.");
+        }
+
+        if (process.env.EDGE_USE_CORECLR) {
+            options.bootstrapDependencyManifest = compiler.getBootstrapDependencyManifest();
         }
     }
 
