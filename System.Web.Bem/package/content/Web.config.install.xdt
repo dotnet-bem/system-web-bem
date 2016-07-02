@@ -2,6 +2,6 @@
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <configSections xdt:Transform="InsertIfMissing" />
   <configSections>
-    <section xdt:Transform="Insert" name="bemSettings" type="System.Web.Bem.Configuration.BemConfiguration"/>
+    <section xdt:Transform="Insert" name="bemSettings" type="System.Web.Bem.Configuration.BemConfiguration, System.Web.Bem"/>
   </configSections>
 </configuration >
