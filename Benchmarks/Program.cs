@@ -45,7 +45,7 @@ namespace Benchmarks
 
         public static void RunRenderBenchmark2()
         {
-            var content = File.ReadAllText(@"C:\projects\bemtest-net\Benchmarks\Bem\desktop.bundles\default\default.bemhtml.js");
+            var content = File.ReadAllText(@"C:\develop\bemtest-net\Benchmarks\Bem\desktop.bundles\default\default.bemhtml.js");
             var template = new BemhtmlTemplate(content);
 
             BemhtmlRoot data = GenerateBemJson();
@@ -68,7 +68,7 @@ namespace Benchmarks
         public static void RunRenderBenchmark3()
         {
             BemhtmlRoot data = GenerateBemJson();
-            var template = File.ReadAllText(@"C:\projects\bemtest-net\Benchmarks\Razor\test.cshtml");
+            var template = File.ReadAllText(@"C:\develop\bemtest-net\Benchmarks\Razor\test.cshtml");
             Engine.Razor.Compile(template, "templateKey", typeof(BemhtmlRoot));
 
             var now = DateTime.Now;
@@ -84,23 +84,22 @@ namespace Benchmarks
 
         public static void RunRenderBenchmark4()
         {
-            var template222 = new BemhtmlTemplate("block('xxx').content()('===');");
-
-            BemhtmlRoot data = GenerateBemJson();
-            var template = File.ReadAllText(@"C:\projects\bemtest-net\Benchmarks\Razor\test2.cshtml");
-            Engine.Razor.Compile(template, "templateKey", typeof(BemhtmlRoot));
+            var content = File.ReadAllText(@"C:\develop\bemtest-net\Benchmarks\Bem\desktop.bundles\default2\default2.bemhtml.js");
+            var template = new BemhtmlTemplate(content);
+            
+            //var task2 = template.Apply(null);
+            //task2.Wait();
 
             var now = DateTime.Now;
 
-            //var result = Engine.Razor.Run("templateKey", typeof(BemhtmlRoot), data);
-            //Console.WriteLine(result);
-
             for (var i = 0; i < 1000; i++)
             {
-                var result = Engine.Razor.Run("templateKey", typeof(BemhtmlRoot), data);
+                var task = template.Apply(null);
+                task.Wait();
             }
 
             Console.WriteLine((DateTime.Now - now).TotalMilliseconds);
+            //Console.WriteLine(task2.Result);
         }
 
         public static BemhtmlRoot GenerateBemJson()
@@ -135,7 +134,7 @@ namespace Benchmarks
                 });
             }
 
-            File.WriteAllText(@"C:\projects\bemtest-net\Benchmarks\test.bemjson.json", JsonConvert.SerializeObject(new { block = "root", items = data }));
+            File.WriteAllText(@"C:\develop\bemtest-net\Benchmarks\test.bemjson.json", JsonConvert.SerializeObject(new { block = "root", items = data }));
             return new BemhtmlRoot { block = "root", items = data.ToArray() };
         }
     }
