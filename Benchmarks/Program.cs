@@ -14,7 +14,7 @@ namespace Benchmarks
         static void Main(string[] args)
         {
             //GenerateBemJson();
-            RunRenderBenchmark4();
+            BenchmarkRazor();
 
             Console.WriteLine("======");
             Console.ReadKey();
@@ -65,7 +65,7 @@ namespace Benchmarks
             //Console.WriteLine(task.Result);
         }
 
-        public static void RunRenderBenchmark3()
+        public static void BenchmarkRazor()
         {
             BemhtmlRoot data = GenerateBemJson();
             var template = File.ReadAllText(@"C:\develop\bemtest-net\Benchmarks\Razor\test.cshtml");
@@ -134,7 +134,7 @@ namespace Benchmarks
                 });
             }
 
-            File.WriteAllText(@"C:\develop\bemtest-net\Benchmarks\test.bemjson.json", JsonConvert.SerializeObject(new { block = "root", items = data }));
+            //File.WriteAllText(@"C:\develop\bemtest-net\Benchmarks\test.bemjson.json", JsonConvert.SerializeObject(new { block = "root", items = data }));
             return new BemhtmlRoot { block = "root", items = data.ToArray() };
         }
     }
