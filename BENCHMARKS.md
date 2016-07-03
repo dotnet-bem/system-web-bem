@@ -69,3 +69,9 @@ console.timeEnd('someFunction');
 Разница между шаблонизаторами была даовольно большой и первое что нам казалось значительно замедляет шаблонизацию в .NET это сериализация, в связи с чем было решено добавить тест кейс без [сериализации](https://github.com/dima117/bemtest-net/blob/master/Benchmarks/Bem/desktop.bundles/default2/default2.bemhtml.js).
 
 ### Замеры
+Тест | Среднее время после 10 прогонов(ms)
+------------ | -------------
+Razor | 400
+Node.js | 2300
+.NET BEMHTML | 5600
+.NET BEMHTML( - serialize) | 3500
