@@ -123,18 +123,18 @@ public class DefaultController : Controller
 В разделе `bemSettings` файла Web.config вы можете настраивать, каким способом будут выбираться бандлы с bemhtml шаблонами для обработки запросов. Возможны 3 варианта мэппинга http запросов на бандлы:
 
 1. Один общий бандл на всё приложение - его название можно задать в параметре `DefaultBundle` (по умолчанию `default`):
-```xml
-<bemSettings Mapper="Single" DefaultBundle="index" />
-```
+  ```xml
+  <bemSettings Mapper="Single" DefaultBundle="index" />
+  ```
 1. Отдельный бандл для каждого серверного контроллера:
-```xml
-<bemSettings Mapper="ByController" />
-```
+  ```xml
+  <bemSettings Mapper="ByController" />
+  ```
   Название бандла определяется по названию контроллера: слова разделяются дефисами, приводятся к нижнему регистру, удаляется суффикс "controller" и добавляется префикс `p-` (например, `MainPageController` → `p-main-page`).
 1. Собственный мэппер - есть возможность написать свой класс мэппера и указать его название в параметре `Mapper`:
-```xml
-<bemSettings Mapper="MyApplication.MyNamespace.InnerNamespace.MyMapperClass" />
-```
+  ```xml
+  <bemSettings Mapper="MyApplication.MyNamespace.InnerNamespace.MyMapperClass" />
+  ```
 Класс мэппера должен быть унаследован от базового класса [System.Web.Bem.BundleMappers.Mapper](System.Web.Bem/BundleMappers/Mapper.cs) и реализовывать метод `abstract string GetBundleName(ControllerContext context)`, получающий на вход контекст запроса и возвращающий название бандла. Также, при желании, можно переопределить метод `virtual string GetBundlePath(string bundleName)`, возвращающий по названию бандла путь к файлу с bemhtml шаблонами (по умолчанию формируется путь `<RootDir>\<bundleName>\<bundleName>.bemhtml.js`)
 
 Также в настройках можно задать корневую папку для БЭМ-бандлов проекта (по умолчанию, `~/Bem/desktop.bundles`):
