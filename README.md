@@ -152,17 +152,36 @@ public class DefaultController : Controller
 ├─ Bem
 │  ├─ desktop.blocks
 │  ├─ desktop.bundles
-│  └─ libs                      // сторонние библиотеки блоков
-│     ├─ my-ext-block-library   // папка библиотеки
-│     │  ├─ common.blocks       // уровень переопределения
+│  └─ libs                        // сторонние библиотеки блоков
+│     ├─ my-ext-block-library     // папка библиотеки
+│     │  ├─ common.blocks         // уровень переопределения
 │     │  │   ├─ block1
 │     │  │   └─ block2
-│     │  ├─ desktop.blocks      // уровень переопределения
-│     │  └─ ...                 // бандлы других технологий
+│     │  ├─ desktop.blocks        // уровень переопределения
+│     │  └─ ...                 
 │     │  ...
-│     └─ other-ext-block-library
+│     └─ other-ext-block-library  // папка библиотеки
 └─ ...
 ```
+
+Список уровней переопределения находится в конфигурационном файле сборщика enb `/Bem/.enb/make.js`. В [начале файла](System.Web.Bem/package/content/Bem/.enb/make.js#L10) есть список папок, из которых будут браться файлы блоков при сборке. Необходимо добавить в него папки уровней переопределения скопированных вами внешних библиотек. Для приведенного выше примера структуры файловой системы должно получиться примерно так:
+
+```javascript
+levels = [
+  { path: 'libs/my-ext-block-library/common.blocks', check: false },
+  { path: 'libs/my-ext-block-library/desktop.blocks', check: false },
+  { path: 'libs/other-ext-block-library/common.blocks', check: false },
+  ...
+  'desktop.blocks'
+];
+```
+
+Для удобства подключения библиотеки [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) и [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md) бли выложены в NuGet. Чтобы добавить их в свой проект установите NuGet пакеты [bem-core](https://www.nuget.org/packages/bem-core/), [bem-components](https://www.nuget.org/packages/bem-components/) и добавьте нужные уровни переопределения в конфиг enb:
+```
+Install-Package bem-core
+Install-Package bem-components
+```
+
 
 ## Публикации
 - https://ru.bem.info/forum/1007/
