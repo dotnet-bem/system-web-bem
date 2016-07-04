@@ -14,36 +14,32 @@ namespace Benchmarks
         static void Main(string[] args)
         {
             //GenerateBemJson();
-            BenchmarkRazor();
+            BenchmarkBemhtmlOnlyRender();
 
-            Console.WriteLine("======");
+            Console.WriteLine(@"STOP");
             Console.ReadKey();
         }
 
-        public static void RunRenderBenchmark()
+        public static void BenchmarkBemhtmlFullStack()
         {
             var bemhtml = new BemhtmlEngine();
 
             var json = File.ReadAllText("test.bemjson.json");
-            //object data = JObject.Parse(json);
             object data = GenerateBemJson();
 
-            Console.WriteLine("===");
+            Console.WriteLine("START");
             var now = DateTime.Now;
 
             for (var i = 0; i < 1000; i++)
             {
                 var task = bemhtml.Render(null, data);
-                // var task = BemhtmlEngine.Instance.Render(null, data);
                 task.Wait();
             }
 
             Console.WriteLine((DateTime.Now - now).TotalMilliseconds);
-            //Console.WriteLine(task.Result);
-            Console.ReadKey();
         }
 
-        public static void RunRenderBenchmark2()
+        public static void BenchmarkBemhtmlOnlyRender()
         {
             var content = File.ReadAllText(@"C:\develop\bemtest-net\Benchmarks\Bem\desktop.bundles\default\default.bemhtml.js");
             var template = new BemhtmlTemplate(content);
@@ -82,7 +78,7 @@ namespace Benchmarks
             Console.WriteLine((DateTime.Now - now).TotalMilliseconds);
         }
 
-        public static void RunRenderBenchmark4()
+        public static void BenchmarkBemhtmlNoSerialize()
         {
             var content = File.ReadAllText(@"C:\develop\bemtest-net\Benchmarks\Bem\desktop.bundles\default2\default2.bemhtml.js");
             var template = new BemhtmlTemplate(content);

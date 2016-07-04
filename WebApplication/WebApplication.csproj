@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -102,6 +103,7 @@
     <Content Include="Bem\desktop.blocks\p-index\p-index.bemhtml.js" />
     <Content Include="Bem\desktop.blocks\p-index\p-index.deps.js" />
     <Content Include="Bem\desktop.bundles\default\default.bemdecl.js" />
+    <Content Include="Bem\desktop.bundles\default\default.bemhtml.js" />
     <Content Include="Bem\desktop.bundles\index\index.bemdecl.js" />
     <Content Include="Bem\libs\bem-components\common.blocks\attach\attach.bemhtml.js" />
     <Content Include="Bem\libs\bem-components\common.blocks\attach\attach.bh.js" />
@@ -1074,7 +1076,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>8441</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8441/</IISUrl>
+          <IISUrl>http://localhost:8081/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

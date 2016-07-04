@@ -35,6 +35,13 @@ namespace System.Web.Bem.Configuration
             get { return this["Mapper"] as string; }
         }
 
+        [ConfigurationProperty("Debug", DefaultValue = "false")]
+        public bool Debug
+        {
+            get { return (bool)this["Debug"]; }
+        }
+
+
         #endregion
     }
 }

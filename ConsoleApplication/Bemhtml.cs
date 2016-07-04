@@ -14,12 +14,15 @@ namespace ConsoleApplication
 
 		public Bemhtml(string template)
 		{
-			const string wrapper = @"
+            Environment.SetEnvironmentVariable("EDGE_NODE_PARAMS", "--debug");
+            const string wrapper = @"
 				{0}
 
 				var api = new BEMHTML({{}});
 				api.compile(function(match, once, wrap, elemMatch, block, elem, mode, mod, elemMod, def, tag, attrs, cls, js, bem, mix, content, replace, extend, oninit, xjstOptions, local, applyCtx, applyNext, apply) {{ {1}; }});
 				api.exportApply(exports);
+
+                debugger;
 
 				return function (data, callback) {{ callback(null, exports.apply(data));}}";
 

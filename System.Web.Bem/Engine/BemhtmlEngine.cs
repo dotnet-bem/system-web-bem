@@ -23,6 +23,11 @@ namespace System.Web.Bem.Engine
         {
             config = BemConfiguration.Load();
             Instance = new BemhtmlEngine();
+
+            if (config.Debug)
+            {
+                Environment.SetEnvironmentVariable("EDGE_NODE_PARAMS", "--debug");
+            }
         }
 
         public BemhtmlEngine()

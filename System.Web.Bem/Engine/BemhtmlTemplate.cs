@@ -12,7 +12,12 @@ namespace System.Web.Bem.Engine
 
         public BemhtmlTemplate(string bundle)
 		{
-			func = Edge.Func(bundle + ";return function (data, cb) { cb(null, exports.BEMHTML.apply(data));}");
+			func = Edge.Func(bundle + @"
+                ;return function (data, cb) { 
+                    cb(null, exports.BEMHTML.apply(data)); 
+                    debugger; 
+                }
+            ");
 		}
 
 		public Task<object> Apply(object data) 
