@@ -25,4 +25,4 @@ Cтавим официальную [тулзу](https://github.com/Microsoft/nod
  ```
  
  При этом `node-inspector` выдает следующее:
- 
+ https://github.com/bem-dot-net/system-web-bem/blob/debug/Windows%208.1%202016-07-04%2017-17-09.png
