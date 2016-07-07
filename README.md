@@ -4,7 +4,7 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
 
 ## Быстрый старт
 
-1. Убедитесь, что на компьютере, где будет *выполняться сборка* проекта, установлен [node.js](https://nodejs.org/en/) (при этом для *работы приложения* устанавливать node.js не нужно).
+1. Убедитесь, что на компьютере, где будет *выполняться сборка* проекта, установлен [node.js](https://nodejs.org/en/) (при этом для *работы приложения* устанавливать node.js не обязательно).
 
 1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/) в свой проект ASP.NET MVC.
   ```bash
@@ -54,12 +54,13 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
 │  │     ├─ block-n.css         // реализация блока block-n в технологии css 
 │  │     │  ...                 // ...
 │  │     └─ block-n.js
-│  └─ desktop.bundles           // папка с бандлами проекта
-│     ├─ bundle-1 
-│     ├─ bundle-2 
-│     │  ... 
-│     └─ bundle-n 
-│        └─ bundle-n.bemdecl.js // декларация бандла bundle-n 
+│  ├─ desktop.bundles           // папка с бандлами проекта
+│  │  ├─ bundle-1 
+│  │  ├─ bundle-2 
+│  │  │  ... 
+│  │  └─ bundle-n 
+│  │     └─ bundle-n.bemdecl.js // декларация бандла bundle-n 
+│  └─ levels.js                 // список уровней переопределения
 │  ...
 ├─ Controllers                  // Controllers, Models, Views - стандартные папки ASP.NET MVC
 ├─ Models
@@ -127,15 +128,18 @@ public class DefaultController : Controller
 В разделе `bemSettings` файла Web.config вы можете настраивать, каким способом будут выбираться бандлы с bemhtml шаблонами для http-запросов. Возможны 3 варианта мэппинга запросов на бандлы:
 
 1. Один общий бандл на всё приложение - его название можно задать в параметре `DefaultBundle` (по умолчанию `default`):
+
   ```xml
   <bemSettings Mapper="Single" DefaultBundle="index" />
   ```
 1. Отдельный бандл для каждого серверного контроллера:
+
   ```xml
   <bemSettings Mapper="ByController" />
   ```
   Название бандла определяется по названию контроллера: слова разделяются дефисами, приводятся к нижнему регистру, удаляется суффикс "controller" и добавляется префикс `p-` (например, `MainPageController` → `p-main-page`).
 1. Собственный мэппер - есть возможность написать свой класс мэппера и указать его название в параметре `Mapper`:
+
   ```xml
   <bemSettings Mapper="MyApplication.MyNamespace.InnerNamespace.MyMapperClass" />
   ```
@@ -147,31 +151,39 @@ public class DefaultController : Controller
 <bemSettings RootDir="~/public" />
 ```
 
-### Подключение библиотек с блоками
+### Подключение библиотек блоков
 
-Вы можете подключать в свой проект сторонние библиотеки с блоками и использовать их. Для этого скопируйте файлы блоков в свой проект и добавьте новые папки с блоками в список уровней переопределения в настройках сборщика enb.
+Вы можете подключать в свой проект сторонние библиотеки с блоками и использовать их. Для этого скопируйте файлы блоков в свой проект и добавьте новые папки с блоками в список уровней переопределения.
 
 Рекомендуется размещать сторонние библиотеки блоков в папке `/Bem/libs`. Пример:
+```
+└─ Bem
+   └─ libs                        // сторонние библиотеки блоков
+      ├─ my-ext-block-library     // папка библиотеки
+      │  ├─ common.blocks         // уровень переопределения
+      │  │   ├─ block1
+      │  │   └─ block2
+      │  ├─ desktop.blocks        // уровень переопределения
+      │  └─ ...                 
+      │  ...
+      └─ other-ext-block-library  // папка библиотеки
+```
+
+Список уровней переопределения находится в файле `/Bem/levels.js`. 
+
 ```
 ├─ Bem
 │  ├─ desktop.blocks
 │  ├─ desktop.bundles
-│  └─ libs                        // сторонние библиотеки блоков
-│     ├─ my-ext-block-library     // папка библиотеки
-│     │  ├─ common.blocks         // уровень переопределения
-│     │  │   ├─ block1
-│     │  │   └─ block2
-│     │  ├─ desktop.blocks        // уровень переопределения
-│     │  └─ ...                 
-│     │  ...
-│     └─ other-ext-block-library  // папка библиотеки
+│  ├─ libs                        // сторонние библиотеки блоков
+│  └─ levels.js                   // список уровней переопределения
 └─ ...
 ```
 
-Список уровней переопределения находится в конфигурационном файле сборщика enb `/Bem/.enb/make.js`. В [начале файла](System.Web.Bem/package/content/Bem/.enb/make.js#L10) есть список папок, из которых будут браться файлы блоков при сборке. Необходимо добавить в него папки уровней переопределения скопированных вами внешних библиотек. Для приведенного выше примера структуры файловой системы должно получиться примерно так:
+По сути это список папок, из которых будут браться файлы блоков при сборке. Необходимо добавить в него папки уровней переопределения скопированных вами внешних библиотек. Для приведенного выше примера структуры файловой системы должно получиться примерно так:
 
 ```javascript
-levels = [
+module.exports = [
   { path: 'libs/my-ext-block-library/common.blocks', check: false },
   { path: 'libs/my-ext-block-library/desktop.blocks', check: false },
   { path: 'libs/other-ext-block-library/common.blocks', check: false },
@@ -180,12 +192,12 @@ levels = [
 ];
 ```
 
-Для удобства подключения библиотеки [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) и [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md) бли выложены в NuGet. Чтобы добавить их в свой проект установите NuGet пакеты [bem-core](https://www.nuget.org/packages/bem-core/), [bem-components](https://www.nuget.org/packages/bem-components/) и добавьте нужные уровни переопределения в конфиг enb:
+Для удобства подключения в NuGet были выложены библиотеки [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) и [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md). Чтобы добавить их в свой проект установите NuGet пакеты [bem-core](https://www.nuget.org/packages/bem-core/), [bem-components](https://www.nuget.org/packages/bem-components/):
 ```
 Install-Package bem-core
 Install-Package bem-components
 ```
-
+Уровни переопределения библиотек bem-core и bem-components [уже перечислены](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) в файле levels.js, но по умолчанию закомментированы. Раскомментриуйте их.
 
 ## Публикации
 - https://ru.bem.info/forum/1007/
