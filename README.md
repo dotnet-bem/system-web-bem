@@ -155,7 +155,7 @@ public class DefaultController : Controller
 
 Вы можете подключать в свой проект сторонние библиотеки с блоками и использовать их. Для этого скопируйте файлы блоков в свой проект и добавьте новые папки с блоками в список уровней переопределения.
 
-Рекомендуется размещать сторонние библиотеки блоков в папке `/Bem/libs`. Пример:
+Рекомендуется размещать сторонние библиотеки блоков в папке `/Bem/libs`. Например:
 ```
 └─ Bem
    └─ libs                        // сторонние библиотеки блоков
@@ -197,7 +197,7 @@ module.exports = [
 Install-Package bem-core
 Install-Package bem-components
 ```
-Уровни переопределения библиотек bem-core и bem-components [уже перечислены](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) в файле levels.js, но по умолчанию закомментированы. Раскомментриуйте их.
+Уровни переопределения библиотек bem-core и bem-components [уже перечислены](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) в файле `levels.js`, но по умолчанию закомментированы. Раскомментриуйте их.
 
 ## Публикации
 - https://ru.bem.info/forum/1007/
