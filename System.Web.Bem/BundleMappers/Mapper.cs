@@ -11,9 +11,10 @@ namespace System.Web.Bem.BundleMappers
 
         public static Mapper Create(BemConfiguration config)
         {
+            string name = config.Get(cfg => cfg.Mapper, BemConfiguration.Defaults.MAPPER);
             Mapper mapper;
 
-            switch (config.Mapper)
+            switch (name)
             {
                 case "Single":
                     mapper = new Single();
@@ -22,7 +23,7 @@ namespace System.Web.Bem.BundleMappers
                     mapper = new ByController();
                     break;
                 default:
-                    var type = Type.GetType(config.Mapper, true);
+                    var type = Type.GetType(name, true);
                     mapper = (Mapper)Activator.CreateInstance(type);
                     break;
             }
@@ -41,8 +42,10 @@ namespace System.Web.Bem.BundleMappers
 
         public virtual void Init(BemConfiguration config)
         {
-            DefaultBundle = config.DefaultBundle;
-            RootDir = Path.IsPathRooted(config.RootDir) ? config.RootDir : HostingEnvironment.MapPath(config.RootDir);
+            var rootDir = config.Get(cfg => cfg.RootDir, BemConfiguration.Defaults.ROOT_DIR);
+
+            RootDir = Path.IsPathRooted(rootDir) ? rootDir : HostingEnvironment.MapPath(rootDir);
+            DefaultBundle = config.Get(cfg => cfg.DefaultBundle, BemConfiguration.Defaults.DEFAULT_BUNDLE);
         }
 
         public virtual string Map(ControllerContext context)

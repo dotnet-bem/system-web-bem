@@ -1052,7 +1052,6 @@
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\System.Web.Bem\System.Web.Bem.csproj">
       <Project>{3c5830c5-377f-49f9-b0ac-f578860f5710}</Project>
