@@ -1,21 +1,12 @@
-﻿var enbBemTechs = require('enb-bem-techs'),
+﻿var levels = require('../levels'),
+    enbBemTechs = require('enb-bem-techs'),
     techs = {
         fileProvider: require('enb/techs/file-provider'),
         fileCopy: require('enb/techs/file-copy'),
         stylus: require('enb-stylus/techs/stylus'),
         browserJs: require('enb-js/techs/browser-js'),
         bemhtml: require('enb-bemxjst/techs/bemhtml')
-    },
-    levels = [
-        { path: 'libs/bem-core/common.blocks', check: false },
-        { path: 'libs/bem-core/desktop.blocks', check: false },
-        { path: 'libs/bem-components/common.blocks', check: false },
-        { path: 'libs/bem-components/desktop.blocks', check: false },
-        { path: 'libs/bem-components/design/common.blocks', check: false },
-        { path: 'libs/bem-components/design/desktop.blocks', check: false },
-        'desktop.blocks'
-    ];
-
+    };
 
 module.exports = function(config) {
 

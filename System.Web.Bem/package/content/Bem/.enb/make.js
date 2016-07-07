@@ -1,15 +1,12 @@
-﻿var enbBemTechs = require('enb-bem-techs'),
+﻿var levels = require('../levels'),
+    enbBemTechs = require('enb-bem-techs'),
     techs = {
         fileProvider: require('enb/techs/file-provider'),
         fileCopy: require('enb/techs/file-copy'),
         stylus: require('enb-stylus/techs/stylus'),
         browserJs: require('enb-js/techs/browser-js'),
         bemhtml: require('enb-bemxjst/techs/bemhtml')
-    },
-    levels = [
-        'desktop.blocks'
-    ];
-
+    };
 
 module.exports = function(config) {
 
