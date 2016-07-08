@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0"?>
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-  <configSections xdt:Transform="InsertIfMissing" />
-  <configSections>
-    <section xdt:Transform="Insert" name="bemSettings" type="System.Web.Bem.Configuration.BemConfiguration, System.Web.Bem"/>
+  <configSections xdt:Transform="InsertBefore(/configuration/*[1])" />
+  <configSections xdt:Locator="XPath(/configuration/configSections[last()])">
+    <section xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" 
+             name="bemSettings" type="System.Web.Bem.Configuration.BemConfiguration, System.Web.Bem" />
   </configSections>
+  <configSections xdt:Transform="RemoveAll" xdt:Locator="Condition(count(*)=0)" />
 </configuration >
