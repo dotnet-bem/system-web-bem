@@ -125,10 +125,6 @@
     <Content Include="Bem\desktop.bundles\default\default.bemhtml.js" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApplication\ConsoleApplication.csproj">
-      <Project>{837ef80d-f368-4cdb-a820-360feb63082b}</Project>
-      <Name>ConsoleApplication</Name>
-    </ProjectReference>
     <ProjectReference Include="..\System.Web.Bem\System.Web.Bem.csproj">
       <Project>{3C5830C5-377F-49F9-B0AC-F578860F5710}</Project>
       <Name>System.Web.Bem</Name>
