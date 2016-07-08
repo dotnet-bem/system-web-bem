@@ -94,6 +94,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bem\desktop.blocks\b-header\b-header.deps.js" />
+    <Content Include="Bem\desktop.blocks\b-header\b-header.js" />
+    <Content Include="Bem\levels.js" />
     <Content Include="Bem\.enb\make.js" />
     <Content Include="Bem\desktop.blocks\b-event-selector\b-event-selector.bemhtml.js" />
     <Content Include="Bem\desktop.blocks\b-event-selector\b-event-selector.css" />

@@ -100,6 +100,7 @@
     <Content Include="package\content\Bem\.enb\make.js" />
     <Content Include="package\content\Bem\desktop.blocks\example\example.bemhtml.js" />
     <Content Include="package\content\Bem\desktop.bundles\default\default.bemdecl.js" />
+    <Content Include="package\content\Bem\levels.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="edge\x64\edge_nativeclr.node">
