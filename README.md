@@ -209,5 +209,6 @@ Install-Package bem-components
 Уровни переопределения библиотек bem-core и bem-components [уже перечислены](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) в файле `levels.js`, но по умолчанию закомментированы. Раскомментриуйте их.
 
 ## Публикации
-- https://ru.bem.info/forum/1007/
-- https://ru.bem.info/forum/1048/
+- [Скрещиваем БЭМ и .NET](https://ru.bem.info/forum/1007/)
+- [Продолжаем скрещивать БЭМ и .NET](https://ru.bem.info/forum/1048/)
+- [Хакатон: БЭМ-инфраструктура для .NET](https://ru.bem.info/forum/1065/)
