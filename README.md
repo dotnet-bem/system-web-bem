@@ -2,14 +2,14 @@
 
 System.Web.Bem - is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MVC projects.
 
-- [Get Started](#Get-Started)
-- [Details](#Details)
-    - [Specificity of BEM projects](#Specificity-of-bem-projects)
-    - [Structure of project files](#Structure-of-project-files)
-    - [Build the bundles](#Build-the-bundles)
-    - [Server side BEMHTML templates](#Server-side-bemhtml-templates)
-    - [External block libraries usage](#External-block-libraries-usage)
-- [Articles](#Articles)
+- [Get Started](#get-started)
+- [Details](#details)
+    - [Specificity of BEM projects](#specificity-of-bem-projects)
+    - [Structure of project files](#structure-of-project-files)
+    - [Build the bundles](#build-the-bundles)
+    - [Server side BEMHTML templates](#server-side-bemhtml-templates)
+    - [External block libraries usage](#external-block-libraries-usage)
+- [Articles](#articles)
 
 ## Get Started
 
