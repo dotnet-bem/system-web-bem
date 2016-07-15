@@ -13,7 +13,7 @@ System.Web.Bem - is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MV
 
 ## Get Started
 
-1. Убедитесь, что на компьютере, где будет *выполняться сборка* проекта, установлен [node.js](https://nodejs.org/en/) (при этом для *работы приложения* устанавливать node.js не обязательно).
+1. Make sure that [node.js](https://nodejs.org/en/) is installed on the computer that will assemble of the project (node.js on the production server is not required).
 
 1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/) в свой проект ASP.NET MVC.
   ```bash
