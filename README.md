@@ -59,8 +59,8 @@ Bundle declaration is a file with the list of blocks, which should be in a bundl
 │  │  ├─ block-2 
 │  │  │  ... 
 │  │  └─ block-n 
-│  │     ├─ block-n.bemhtml.js  // implementation of block 'block-n' in 'bemhtml.js' technology (templates)
-│  │     ├─ block-n.css         // implementation of block 'block-n' in 'css' technology
+│  │     ├─ block-n.bemhtml.js  // implementation of 'block-n' in 'bemhtml.js' technology (templates)
+│  │     ├─ block-n.css         // implementation of 'block-n' in 'css' technology
 │  │     │  ...                 // ...
 │  │     └─ block-n.js
 │  ├─ desktop.bundles           // folder for the bundles
