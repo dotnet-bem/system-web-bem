@@ -15,12 +15,12 @@ System.Web.Bem - is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MV
 
 1. Make sure that [node.js](https://nodejs.org/en/) is installed on the computer that will assemble of the project (node.js on the production server is not required).
 
-1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/) в свой проект ASP.NET MVC.
+1. Install the [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem/) into your ASP.NET MVC project.
   ```bash
   PM> Install-Package System.Web.Bem -Pre
   ```
 
-1. Верните из метода контроллера экземпляр класса `BemhtmlResult`, передав ему в конструктор нужный bemjson.
+1. Return the instance of the `BemhtmlResult` class from controller's method. Send the essential bemjson to constructor of BemhtmlResult.
   ```cs
   using System.Web.Bem;
   ...
@@ -36,51 +36,51 @@ System.Web.Bem - is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MV
 ## Details
 
 ### Specificity of BEM projects
-[БЭМ](https://bem.info) (Блок-Элемент-Модификатор) - это придуманная в [Яндексе](https://yandex.ru) методология разработки веб-приложений, в основе которой лежит компонентный подход. БЭМ - это также набор инструментов для удобной разработки в соответствии с принципами методологии. БЭМ помогает быстрее разрабатывать сайты и поддерживать их долгое время.
+[BEM](https://en.bem.info) (Block-Element-Modifier) is the frontend development methodology, which was created in [Yandex](https://yandex.com/company). It is based on the component approach. BEM is also the set of tools for comfortable development according to principles of methodology. BEM hepls to develop the sites faster and support them for a long time.
 
-Согласно правилам БЭМ, приложение состоит из независимых блоков, которые лежат в отдельных папках. Каждый блок реализован в нескольких технологиях (шаблоны, стили, клиентский код). Чтобы код блоков мог работать в приложении, блоки собирают в бандлы.
+According to the BEM principles, application consists from independent blocks, which located in separate folders. Each block is implemented in several technologies (templates, styles, client-side code). Blocks should be built into the bundles to use them in the running application.
 
-Декларация бандла - файл с перечислением блоков, которые должны попасть в бандл. На основе декларации сборщик собирает бандл, учитывая зависимости блоков и уровни переопределения. Бандл собирается отдельно для каждой технологии. Во время работы приложения бандл шаблонов используется для формирования html (на сервере и клиенте), бандлы js и css подключаются на страницы и используются на клиенте.
+Bundle declaration is a file with the list of blocks, which should be in a bundle. On the base of declaration assembler will build a bundles according to dependencies of blocks and levels of redifinition. Bundle is built separately for each technology. During the application is running the bundle of templates is used for html generation (on the server and the client side), js bundles and style bundles are included in the pages and used on client side.
 
-**System.Web.Bem** - БЭМ-инфрастурктура для ASP.NET MVC проектов. При установке в проект [NuGet пакета System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/):
-- добавляется папка `Bem` с файловой структурой БЭМ проекта;
-- из npm ставится сборщик БЭМ-проектов [enb](https://ru.bem.info/toolbox/enb/) и настройки для сборки БЭМ-бандлов при компиляции ASP.NET MVC проекта;
-- подключается C# библиотека `System.Web.Bem` для серверной шаблонизации во время работы приложения.
+**System.Web.Bem** is the BEM-infrastructure for ASP.NET MVC projects. During the installation of [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem) into the project:
+- folder `BEM` with the files structure is created;
+- assembler of BEM-projects [enb](https://ru.bem.info/toolbox/enb) is installed from npm and proper configuration file for enb is created;
+- reference for .NET library named System.Web.Bem is added (this library allows to use BEMHTML templates on the server side).
 
 ### Structure of project files
 
 ```
-<Project root>                  // корневая папка проекта
-├─ Bem                          // папка БЭМ-проекта
+<Project root>
+├─ Bem                          // BEM-files folder
 │  ├─ .enb
-│  │  └─ make.js                // конфиг сборщика enb
-│  ├─ desktop.blocks            // уровень переопределения, внутри находятся блоки
+│  │  └─ make.js                // enb configuration file
+│  ├─ desktop.blocks            // redefinition level (blocks are located inside)
 │  │  ├─ block-1 
 │  │  ├─ block-2 
 │  │  │  ... 
 │  │  └─ block-n 
-│  │     ├─ block-n.bemhtml.js  // реализация блока block-n в технологии bemhtml.js (шаблоны)
-│  │     ├─ block-n.css         // реализация блока block-n в технологии css 
+│  │     ├─ block-n.bemhtml.js  // implementation of block 'block-n' in 'bemhtml.js' technology (templates)
+│  │     ├─ block-n.css         // implementation of block 'block-n' in 'css' technology
 │  │     │  ...                 // ...
 │  │     └─ block-n.js
-│  ├─ desktop.bundles           // папка с бандлами проекта
+│  ├─ desktop.bundles           // folder for the bundles
 │  │  ├─ bundle-1 
 │  │  ├─ bundle-2 
 │  │  │  ... 
 │  │  └─ bundle-n 
-│  │     └─ bundle-n.bemdecl.js // декларация бандла bundle-n 
-│  └─ levels.js                 // список уровней переопределения
+│  │     └─ bundle-n.bemdecl.js // declaration of the bundle named 'bundle-n'
+│  └─ levels.js                 // list of redefinition levels
 │  ...
-├─ Controllers                  // Controllers, Models, Views - стандартные папки ASP.NET MVC
+├─ Controllers                  // Controllers, Models, Views - usual ASP.NET MVC folders
 ├─ Models
 ├─ Views
 │  ...
-├─ package.json                 // конфиг npm
-└─ Web.config                   // конфиг вашего приложения
+├─ package.json                 // npm configuration file
+└─ Web.config                   // configuration file of your application
 ```
 
 ### Build the bundles
-**Внимание! Для сборки проекта необходимо, чтобы на компьютере был установлен [node.js](https://nodejs.org/en/). Для работы приложения на сервере устанавливать node.js нет необохдимости.**
+**Attantion! Node.js is requeired for project building. Node.js on the production server is not required. **
 
 Чтобы код блоков мог работать в приложении, блоки собирают в бандлы. Сборка бандла выполняется на основе декларации - специального файла с расширением `bemdecl.js`, где перечислены блоки, которые должны попасть в бандл. Пример декларации бандла:
 
