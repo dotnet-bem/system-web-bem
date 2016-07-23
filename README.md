@@ -80,7 +80,7 @@ Bundle declaration is a file with the list of blocks, which should be in a bundl
 ```
 
 ### Build the bundles
-**Attantion! Node.js is requeired for project building. Node.js on the production server is not required. **
+**Attention! Node.js is requeired for project building. Node.js on the production server is not required.**
 
 Чтобы код блоков мог работать в приложении, блоки собирают в бандлы. Сборка бандла выполняется на основе декларации - специального файла с расширением `bemdecl.js`, где перечислены блоки, которые должны попасть в бандл. Пример декларации бандла:
 
