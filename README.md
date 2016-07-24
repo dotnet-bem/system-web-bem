@@ -82,7 +82,7 @@ Bundle declaration is a file with the list of blocks, which should be in a bundl
 ### Build the bundles
 **Attention! Node.js is requeired for project building. Node.js on the production server is not required.**
 
-Чтобы код блоков мог работать в приложении, блоки собирают в бандлы. Сборка бандла выполняется на основе декларации - специального файла с расширением `bemdecl.js`, где перечислены блоки, которые должны попасть в бандл. Пример декларации бандла:
+Blocks should be assembled into the bundles for usage in running application. Bundles formation is performed on the base of *bundle declaration*. It is a special file that contains the list of blocks which should be in the bundle. Bundle declaration example:
 
 ```javascript
 exports.blocks = [
@@ -90,9 +90,10 @@ exports.blocks = [
   { name: 'block2' }
 ];
 ```
-Декларации находятся в папке `/Bem/desktop.bundles`, каждый бандл в своей папке. Например, декларация бандла `default` должна находиться в файле `/Bem/desktop.bundles/default/default.bemdecl.js`. 
 
-Сборка выполняется специальной утилитой [enb](https://ru.bem.info/toolbox/enb/), которая добавляется в проект при установке NuGet пакета System.Web.Bem. Во время установки пакета настраивается автоматический запуск enb при сборке всего проекта через MsBuild. Таким образом, когда вы собираете ASP.NET MVC проект в Visual Studio, вместе с компиляцией c# кода будет запущена и сборка БЭМ-бандлов. Во время сборки ищутся все декларации внутри `/Bem/desktop.bundles` и для каждой из них собираются бандлы технологий (шаблоны, js, css). 
+Declarations should be located in the `/Bem/desktop.bundles` folder, each bundle is in its own folder. The declaration file name should match the name of the bundle and it should have the `bemdecl.js` extension. For example, the declaration of the `default` bundle should be located in the file `/Bem/desktop.bundles/default/default.bemdecl.js`.
+
+Assembling is performed by special tool [enb](https://ru.bem.info/toolbox/enb), which is added to the project during the System.Web.Bem package installation from NuGet. Also during the package installation the project settings is changed: the automatical enb execution after the MsBuild execution is added. Thus, when you run the build of your ASP.NET MVC project in Visual Studio the assembling of BEM-bundles will be performed automatically after the c# code compilation. During the project assembling will be found all the declarations in the `/Bem/desktop.bundles` folder and for each of them will be assembled all the technologies bundles (templates, styles, java script).
 
 Бандлы технологий имеют имя `<bundle_name>.<tech_ext>` и сохраняются в папку, где находится декларация. Например, файл шаблонов (bemhtml.js) для бандла `default` будет иметь путь `/Bem/desktop.bundles/default/default.bemhtml.js`. Таким образом, после сбоки проекта вы будете наблюдать примерно такую картину:
 ```
