@@ -95,22 +95,24 @@ Declarations should be located in the `/Bem/desktop.bundles` folder, each bundle
 
 Assembling is performed by special tool [enb](https://ru.bem.info/toolbox/enb), which is added to the project during the System.Web.Bem package installation from NuGet. Also during the package installation the project settings is changed: the automatical enb execution after the MsBuild execution is added. Thus, when you run the build of your ASP.NET MVC project in Visual Studio the assembling of BEM-bundles will be performed automatically after the c# code compilation. During the project assembling will be found all the declarations in the `/Bem/desktop.bundles` folder and for each of them will be assembled all the technologies bundles (templates, styles, java script).
 
-Бандлы технологий имеют имя `<bundle_name>.<tech_ext>` и сохраняются в папку, где находится декларация. Например, файл шаблонов (bemhtml.js) для бандла `default` будет иметь путь `/Bem/desktop.bundles/default/default.bemhtml.js`. Таким образом, после сбоки проекта вы будете наблюдать примерно такую картину:
+Bundles of technologies should be named `<bundle_name>.<tech_ext>` and should be saved in the folder where the declaration is located. For example, the templates file (bem html.js) for the `default` bundle should have a path `/Bem/desktop.bundles/default/default.bemhtml.js`. Thus, after the build of the project you will see something like this:
+
 ```
 <Project root>
 ├─ Bem
 │  ├─ ...
 │  └─ desktop.bundles
 │     ├─ default 
-│     │  ├─ default.bemdecl.js  // декларация бандла
-│     │  ├─ default.bemhtml.js  // бандл с шаблонами 
-│     │  ├─ default.js          // бандл с клиентским кодом 
-│     │  └─ default.css         // бандл со стилями 
-│     │  └─ ...                 // бандлы других технологий
+│     │  ├─ default.bemdecl.js  // bundle declaration
+│     │  ├─ default.bemhtml.js  // templates bundle 
+│     │  ├─ default.js          // client-side code bundle 
+│     │  └─ default.css         // styles bundle 
+│     │  └─ ...                 // bundles of other technologies
 │     └─ ...
 └─ ...
 ```
-Во время работы приложения бандл шаблонов используется для формирования html (на сервере и клиенте), бандлы js и css подключаются на страницы и используются на клиенте. Во время серверной шаблонизации будет использоваться бандл с шаблонами, указанный в настройках приложения. Бандлы js и css нужно самостоятельно подключить на страницу.
+
+During the application is running the bundle of templates is used for html generation (on the server and the client side), js bundles and style bundles are included in the pages and used on client side. During the server-side html generation will be used the templates bundle which is selected by application settings. Client-side bundles (js and css) should be included to the page manually.
 
 ### Server side BEMHTML templates
 
