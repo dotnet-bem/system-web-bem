@@ -132,7 +132,7 @@ public class DefaultController : Controller
 }
 ```
 
-If you need to render BEM-block inside the Razor template you should use the `@Html.Bem` helper (and provide the essential json for it).
+If you need to render BEM-block inside the Razor template you should use the `@Html.Bem` helper (and provide the essential bemjson for it).
 ```cs
 @Html.Bem(new { block = "my-block", data = Model })
 ```
