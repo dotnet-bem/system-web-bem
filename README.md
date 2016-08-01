@@ -20,7 +20,7 @@ System.Web.Bem - is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MV
   PM> Install-Package System.Web.Bem -Pre
   ```
 
-1. Return the instance of the `BemhtmlResult` class from controller's method. Send the essential bemjson to constructor of BemhtmlResult.
+1. Return the instance of the `BemhtmlResult` class from controller's method. Send the essential bemjson to constructor of `BemhtmlResult`.
   ```cs
   using System.Web.Bem;
   ...
@@ -116,9 +116,9 @@ During the application is running the bundle of templates is used for html gener
 
 ### Server side BEMHTML templates
 
-[BEMHTML](https://github.com/bem/bem-xjst) - специальный шаблонизатор, который удобно использовать в БЭМ-проектах.
+[BEMHTML](https://github.com/bem/bem-xjst) is the special templates engine which is convenient for BEM-projects.
 
-При установке NuGet пакета System.Web.Bem в проект будет добавлена .NET библиотека для шаблонизации BEMHTML шаблонов на стороне сервера во время работы приложения. Чтобы передать на клиент страницу, сформированную с помощью bemhtml шаблонов, просто верните из контроллера экземпляр класса `BemhtmlResult`, передав ему в конструктор нужный bemjson.
+During the installation of [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem) NuGet package into the project the reference for .NET library named System.Web.Bem will be added (this library allows to use BEMHTML templates on the server side). To generate a html-page using BEMHTML on the server-side you should just return the instance of the `BemhtmlResult` class from the controller's method. Send the essential *bemjson* to constructor of the `BemhtmlResult`.
 
 ```cs
 using System.Web.Bem;
@@ -132,7 +132,7 @@ public class DefaultController : Controller
 }
 ```
 
-Если нужно внутри Razor-шаблона вставить БЭМ-блок, используйте хелпер `@Html.Bem`, передав ему нужный bemjson.
+If you need to render BEM-block inside the Razor template you should use the `@Html.Bem` helper (and provide the essential json for it).
 ```cs
 @Html.Bem(new { block = "my-block", data = Model })
 ```
