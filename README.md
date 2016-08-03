@@ -192,7 +192,7 @@ The list of redefinition levels is located in `/Bem/levels.js` file.
 └─ ...
 ```
 
-По сути это список папок, из которых будут браться файлы блоков при сборке. Необходимо добавить в него папки уровней переопределения скопированных вами внешних библиотек. Для приведенного выше примера структуры файловой системы должно получиться примерно так:
+Actually it is the list of folders from which the files will be used during project build. It's necessary to add the redefinition levels of the used third-party libraries to this list. For the file structure example which is described above, the list of redefinition levels should be similar to this:
 
 ```javascript
 module.exports = [
