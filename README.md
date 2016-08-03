@@ -137,19 +137,19 @@ If you need to render BEM-block inside the Razor template you should use the `@H
 @Html.Bem(new { block = "my-block", data = Model })
 ```
 
-В разделе `bemSettings` файла Web.config вы можете настраивать, каким способом будут выбираться бандлы с bemhtml шаблонами для http-запросов. Возможны 3 варианта мэппинга запросов на бандлы:
+In the section named `bemSettings` of Web.config file you may setup how to selected the template-bundles for each http-request. 3 variants of request-to-bundle mapping are possible:
 
-1. Один общий бандл на всё приложение - его название можно задать в параметре `DefaultBundle` (по умолчанию `default`):
+1. The single bundle per application - it's name can be set by `DefaultBundle` parameter (`default` by default):
 
   ```xml
   <bemSettings Mapper="Single" DefaultBundle="index" />
   ```
-1. Отдельный бандл для каждого серверного контроллера:
+1. Separate bundle for each server-side controller:
 
   ```xml
   <bemSettings Mapper="ByController" />
   ```
-  Название бандла определяется по названию контроллера: слова разделяются дефисами, приводятся к нижнему регистру, удаляется суффикс "controller" и добавляется префикс `p-` (например, `MainPageController` → `p-main-page`).
+  The bundle name is formed by controller name: all words are separated by dashes, all letters changed to lower case, the "controller" suffix is deleted and `p-` prefix is added (for example, `MainPageController` → `p-main-page`).
 1. Собственный мэппер - есть возможность написать свой класс мэппера и указать его название в параметре `Mapper`:
 
   ```xml
