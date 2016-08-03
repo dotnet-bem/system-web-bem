@@ -150,14 +150,14 @@ In the section named `bemSettings` of Web.config file you may setup how to selec
   <bemSettings Mapper="ByController" />
   ```
   The bundle name is formed by controller name: all words are separated by dashes, all letters changed to lower case, the "controller" suffix is deleted and `p-` prefix is added (for example, `MainPageController` → `p-main-page`).
-1. Собственный мэппер - есть возможность написать свой класс мэппера и указать его название в параметре `Mapper`:
+1. The custom mapper - you can write your own mapper class and set it's name in `Mapper` parameter:
 
   ```xml
   <bemSettings Mapper="MyApplication.MyNamespace.InnerNamespace.MyMapperClass" />
   ```
-Класс мэппера должен быть унаследован от базового класса [System.Web.Bem.BundleMappers.Mapper](System.Web.Bem/BundleMappers/Mapper.cs) и реализовывать метод `abstract string GetBundleName(ControllerContext context)`, получающий на вход контекст запроса и возвращающий название бандла. Также, при желании, можно переопределить метод `virtual string GetBundlePath(string bundleName)`, возвращающий по названию бандла путь к файлу с bemhtml шаблонами (по умолчанию формируется путь `<RootDir>\<bundleName>\<bundleName>.bemhtml.js`)
+Your mapper class must be inherited from the base class named [System.Web.Bem.BundleMappers.Mapper](System.Web.Bem/BundleMappers/Mapper.cs) and it must implement the `abstract string GetBundleName(ControllerContext context)` method, which receives a request context as an input parameter and returns the bundle name for this request. Also you can redefine the `virtual string GetBundlePath(string bundleName)` method, which returns the bemhtml-bundle full path by the bundle name (by default the path `<RootDir>\<bundleName>\<bundleName>.bemhtml.js` is formed).
 
-Также в настройках можно задать корневую папку для БЭМ-бандлов проекта (по умолчанию, `~/Bem/desktop.bundles`):
+Also you can setup the default root directory of BEM-bundles (by default is `~/Bem/desktop.bundles`):
 
 ```
 <bemSettings RootDir="~/public" />
