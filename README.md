@@ -165,30 +165,30 @@ Also you can setup the default root directory of BEM-bundles (by default is `~/B
 
 ### External block libraries usage
 
-Вы можете подключать в свой проект сторонние библиотеки с блоками и использовать их. Для этого скопируйте файлы блоков в свой проект и добавьте новые папки с блоками в список уровней переопределения.
+You can add to your project third-party block libraries and use them. For that you should copy the blocks files into your project and add the copied folders to the list of redefinition levels.
 
-Рекомендуется размещать сторонние библиотеки блоков в папке `/Bem/libs`. Например:
+It is recommended to locate third-party blocks inside the `/Bem/libs` folder. For example:
 ```
 └─ Bem
-   └─ libs                        // сторонние библиотеки блоков
-      ├─ my-ext-block-library     // папка библиотеки
-      │  ├─ common.blocks         // уровень переопределения
+   └─ libs                        // third-party block libraries
+      ├─ my-ext-block-library     // library folder
+      │  ├─ common.blocks         // redefinition level
       │  │   ├─ block1
       │  │   └─ block2
-      │  ├─ desktop.blocks        // уровень переопределения
+      │  ├─ desktop.blocks        // other redefinition level
       │  └─ ...                 
       │  ...
-      └─ other-ext-block-library  // папка библиотеки
+      └─ other-ext-block-library  // other library folder
 ```
 
-Список уровней переопределения находится в файле `/Bem/levels.js`. 
+The list of redefinition levels is located in `/Bem/levels.js` file. 
 
 ```
 ├─ Bem
 │  ├─ desktop.blocks
 │  ├─ desktop.bundles
-│  ├─ libs                        // сторонние библиотеки блоков
-│  └─ levels.js                   // список уровней переопределения
+│  ├─ libs                        // third-party block libraries
+│  └─ levels.js                   // list of redefinition levels
 └─ ...
 ```
 
