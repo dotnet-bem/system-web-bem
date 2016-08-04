@@ -95,7 +95,7 @@ Declarations should be located in the `/Bem/desktop.bundles` folder, each bundle
 
 Assembling is performed by special tool [enb](https://ru.bem.info/toolbox/enb), which is added to the project during the System.Web.Bem package installation from NuGet. Also during the package installation the project settings is changed: the automatical enb execution after the MsBuild execution is added. Thus, when you run the build of your ASP.NET MVC project in Visual Studio the assembling of BEM-bundles will be performed automatically after the c# code compilation. During the project assembling will be found all the declarations in the `/Bem/desktop.bundles` folder and for each of them will be assembled all the technologies bundles (templates, styles, java script).
 
-Bundles of technologies should be named `<bundle_name>.<tech_ext>` and should be saved in the folder where the declaration is located. For example, the templates file (bem html.js) for the `default` bundle should have a path `/Bem/desktop.bundles/default/default.bemhtml.js`. Thus, after the build of the project you will see something like this:
+Bundles of technologies should be named `<bundle_name>.<tech_ext>` and should be saved in the folder where the declaration is located. For example, the templates file (`bemhtml.js`) for the `default` bundle should have a path `/Bem/desktop.bundles/default/default.bemhtml.js`. Thus, after the build of the project you will see something like this:
 
 ```
 <Project root>
