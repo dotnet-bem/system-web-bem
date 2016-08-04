@@ -204,14 +204,14 @@ module.exports = [
 ];
 ```
 
-Для удобства подключения в NuGet были выложены библиотеки [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) и [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md). Чтобы добавить их в свой проект установите NuGet пакеты [bem-core](https://www.nuget.org/packages/bem-core/), [bem-components](https://www.nuget.org/packages/bem-components/):
+Block libraries [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) and [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md) were published in NuGet for easy installation into any projects. You can use it by install [bem-core](https://www.nuget.org/packages/bem-core/) and [bem-components](https://www.nuget.org/packages/bem-components/) NuGet packages:
 ```
 Install-Package bem-core
 Install-Package bem-components
 ```
-Уровни переопределения библиотек bem-core и bem-components [уже перечислены](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) в файле `levels.js`, но по умолчанию закомментированы. Раскомментриуйте их.
+Redefinition levels of bem-core and bem-components libraries [already exist](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) in the `levels.js` file but they are commented. You should uncomment them for use those libraries.
 
 ## Articles
-- [Скрещиваем БЭМ и .NET](https://ru.bem.info/forum/1007/)
-- [Продолжаем скрещивать БЭМ и .NET](https://ru.bem.info/forum/1048/)
-- [Хакатон: БЭМ-инфраструктура для .NET](https://ru.bem.info/forum/1065/)
+- [Combine BEM with .NET](https://ru.bem.info/forum/1007/) (in Russian)
+- [Сontinue to combine BEM with .NET](https://ru.bem.info/forum/1048/) (in Russian)
+- [Hackathon: BEM-infrastructure for .NET](https://ru.bem.info/forum/1065/) (in Russian)
