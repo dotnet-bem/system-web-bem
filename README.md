@@ -2,18 +2,18 @@
 
 System.Web.Bem - is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MVC projects.
 
-- [Get Started](#get-started)
+- [Quick start](#quick-start)
 - [Details](#details)
     - [Specificity of BEM projects](#specificity-of-bem-projects)
-    - [Structure of project files](#structure-of-project-files)
+    - [Project structure](#project-structure)
     - [Build the bundles](#build-the-bundles)
-    - [Server side BEMHTML templates](#server-side-bemhtml-templates)
+    - [Server-side templating with BEMHTML](#server-side-templating-with-bemhtml)
     - [External block libraries usage](#external-block-libraries-usage)
 - [Articles](#articles)
 
-## Get Started
+## Quick start
 
-1. Make sure that [node.js](https://nodejs.org/en/) is installed on the computer that will assemble of the project (node.js on the production server is not required).
+1. Make sure that [node.js](https://nodejs.org/en/) is installed on the computer that will assemble the project (node.js on the production server is not required).
 
 1. Install the [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem/) into your ASP.NET MVC project.
   ```bash
@@ -38,7 +38,7 @@ System.Web.Bem - is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MV
 ### Specificity of BEM projects
 [BEM](https://en.bem.info) (Block-Element-Modifier) is the frontend development methodology, which was created in [Yandex](https://yandex.com/company). It is based on the component approach. BEM is also the set of tools for comfortable development according to principles of methodology. BEM hepls to develop the sites faster and support them for a long time.
 
-According to the BEM principles, application consists from independent blocks, which located in separate folders. Each block is implemented in several technologies (templates, styles, client-side code). Blocks should be built into the bundles to use them in the running application.
+According to the BEM principles, application consists of independent blocks, which located in separate folders. Each block is implemented in several technologies (templates, styles, client-side code). Blocks should be assembled into the bundles to use them in the running application.
 
 Bundle declaration is a file with the list of blocks, which should be in a bundle. On the base of declaration assembler will build a bundles according to dependencies of blocks and levels of redifinition. Bundle is built separately for each technology. During the application is running the bundle of templates is used for html generation (on the server and the client side), js bundles and style bundles are included in the pages and used on client side.
 
@@ -47,7 +47,7 @@ Bundle declaration is a file with the list of blocks, which should be in a bundl
 - assembler of BEM-projects [enb](https://ru.bem.info/toolbox/enb) is installed from npm and proper configuration file for enb is created;
 - reference for .NET library named System.Web.Bem is added (this library allows to use BEMHTML templates on the server side).
 
-### Structure of project files
+### Project structure
 
 ```
 <Project root>
@@ -80,7 +80,7 @@ Bundle declaration is a file with the list of blocks, which should be in a bundl
 ```
 
 ### Build the bundles
-**Attention! Node.js is requeired for project building. Node.js on the production server is not required.**
+**Note! Node.js is required for project building. Node.js on the production server is not required.**
 
 Blocks should be assembled into the bundles for usage in running application. Bundles formation is performed on the base of *bundle declaration*. It is a special file that contains the list of blocks which should be in the bundle. Bundle declaration example:
 
@@ -95,7 +95,7 @@ Declarations should be located in the `/Bem/desktop.bundles` folder, each bundle
 
 Assembling is performed by special tool [enb](https://ru.bem.info/toolbox/enb), which is added to the project during the System.Web.Bem package installation from NuGet. Also during the package installation the project settings is changed: the automatical enb execution after the MsBuild execution is added. Thus, when you run the build of your ASP.NET MVC project in Visual Studio the assembling of BEM-bundles will be performed automatically after the c# code compilation. During the project assembling will be found all the declarations in the `/Bem/desktop.bundles` folder and for each of them will be assembled all the technologies bundles (templates, styles, java script).
 
-Bundles of technologies should be named `<bundle_name>.<tech_ext>` and should be saved in the folder where the declaration is located. For example, the templates file (`bemhtml.js`) for the `default` bundle should have a path `/Bem/desktop.bundles/default/default.bemhtml.js`. Thus, after the build of the project you will see something like this:
+Bundles of technologies should be named `<bundle_name>.<tech_ext>` and should be saved in the folder where the declaration is located. E.g. the templates file (`bemhtml.js`) for the `default` bundle should have a path `/Bem/desktop.bundles/default/default.bemhtml.js`. Thus, after the build of the project you will see something like this:
 
 ```
 <Project root>
@@ -112,9 +112,9 @@ Bundles of technologies should be named `<bundle_name>.<tech_ext>` and should be
 └─ ...
 ```
 
-During the application is running the bundle of templates is used for html generation (on the server and the client side), js bundles and style bundles are included in the pages and used on client side. During the server-side html generation will be used the templates bundle which is selected by application settings. Client-side bundles (js and css) should be included to the page manually.
+During the application is running the bundle of templates is used for html generation (on the server and the client side), js bundles and style bundles are included to the pages and used on the client side. During the server-side html generation the templates bundle specified in application settings will be used. Client-side bundles (js and css) should be included to the page manually.
 
-### Server side BEMHTML templates
+### Server-side templating with BEMHTML
 
 [BEMHTML](https://github.com/bem/bem-xjst) is the special templates engine which is convenient for BEM-projects.
 
@@ -132,12 +132,12 @@ public class DefaultController : Controller
 }
 ```
 
-If you need to render BEM-block inside the Razor template you should use the `@Html.Bem` helper (and provide the essential bemjson for it).
+If you need to render BEM-block from the Razor template you have to use the `@Html.Bem` helper and provide the essential bemjson for it.
 ```cs
 @Html.Bem(new { block = "my-block", data = Model })
 ```
 
-In the section named `bemSettings` of Web.config file you may setup how to selected the template-bundles for each http-request. 3 variants of request-to-bundle mapping are possible:
+In the `bemSettings` section of Web.config file you can setup how to selected the template-bundles for http-requests. There are 3 choices of request-to-bundle mapping available:
 
 1. The single bundle per application - it's name can be set by `DefaultBundle` parameter (`default` by default):
 
@@ -204,12 +204,12 @@ module.exports = [
 ];
 ```
 
-Block libraries [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) and [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md) were published in NuGet for easy installation into any projects. You can use it by install [bem-core](https://www.nuget.org/packages/bem-core/) and [bem-components](https://www.nuget.org/packages/bem-components/) NuGet packages:
+Block libraries [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) and [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md) were published in NuGet for easy installation into any project. To use it just install [bem-core](https://www.nuget.org/packages/bem-core/) and [bem-components](https://www.nuget.org/packages/bem-components/) NuGet packages:
 ```
 Install-Package bem-core
 Install-Package bem-components
 ```
-Redefinition levels of bem-core and bem-components libraries [already exist](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) in the `levels.js` file but they are commented. You should uncomment them for use those libraries.
+Redefinition levels of bem-core and bem-components libraries [already exists](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) in the `levels.js` file but they are commented out. Uncomment them to use those libraries.
 
 ## Articles
 - [Combine BEM with .NET](https://ru.bem.info/forum/1007/) (in Russian)
