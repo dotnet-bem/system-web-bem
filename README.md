@@ -157,7 +157,7 @@ In the `bemSettings` section of Web.config file you can setup how to selected th
   ```
 Your mapper class must be inherited from the base class named [System.Web.Bem.BundleMappers.Mapper](System.Web.Bem/BundleMappers/Mapper.cs) and it must implement the `abstract string GetBundleName(ControllerContext context)` method, which receives a request context as an input parameter and returns the bundle name for this request. Also you can redefine the `virtual string GetBundlePath(string bundleName)` method, which returns the bemhtml-bundle full path by the bundle name (by default the path `<RootDir>\<bundleName>\<bundleName>.bemhtml.js` is formed).
 
-Also you can setup the default root directory of BEM-bundles (by default is `~/Bem/desktop.bundles`):
+Also you can setup the default root directory of BEM-bundles (`~/Bem/desktop.bundles` by default):
 
 ```
 <bemSettings RootDir="~/public" />
