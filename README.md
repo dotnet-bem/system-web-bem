@@ -6,7 +6,7 @@ System.Web.Bem is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MVC 
 - [Details](#details)
     - [Specifics of BEM projects](#specifics-of-bem-projects)
     - [Project structure](#project-structure)
-    - [Build the bundles](#build-the-bundles)
+    - [Building the bundles](#building-the-bundles)
     - [Server-side templating with BEMHTML](#server-side-templating-with-bemhtml)
     - [External block libraries usage](#external-block-libraries-usage)
 - [Articles](#articles)
@@ -36,11 +36,11 @@ System.Web.Bem is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MVC 
 ## Details
 
 ### Specifics of BEM projects
-[BEM](https://en.bem.info) (Block-Element-Modifier) is the frontend development methodology, which was created in [Yandex](https://yandex.com/company). It is based on the component approach. BEM is also the set of tools for comfortable development according to principles of methodology. BEM hepls to develop the sites faster and support them for a long time.
+[BEM](https://en.bem.info) (Block-Element-Modifier) is the frontend development methodology, which was created in [Yandex](https://yandex.com/company). It is based on the component approach. BEM also includes a set of tools that make development with the BEM methodology more convenient. BEM helps you develop sites faster and support them for a long time.
 
 According to the BEM principles, an application consists of independent blocks, which are located in separate folders. Each block is implemented in several technologies (templates, styles, client-side code). Blocks should be assembled into the bundles to use them in the running application.
 
-Bundle declaration is a file with the list of blocks, which should be in a bundle. On the base of declaration assembler will build a bundles according to dependencies of blocks and levels of redifinition. Bundle is built separately for each technology. During the application is running the bundle of templates is used for html generation (on the server and the client side), js bundles and style bundles are included in the pages and used on client side.
+A bundle declaration is a file that lists the blocks that should be in a bundle. The assembler builds the bundle based on this declaration, accounting for block dependencies and redefinition levels. A separate bundle is made for each technology. When the application is running, the bundle of templates is used for generating HTML (on the server and the client side), while the JS and CSS bundles are included in the pages and used on the client side.
 
 **System.Web.Bem** is the BEM infrastructure for ASP.NET MVC projects. When the [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem) is installed into the project:
 - The `Bem` folder is created with the project's file structure.
@@ -79,7 +79,7 @@ Bundle declaration is a file with the list of blocks, which should be in a bundl
 └─ Web.config                   // configuration file of your application
 ```
 
-### Build the bundles
+### Building the bundles
 **Note! Node.js is required for project building. Node.js on the production server is not required.**
 
 Blocks should be assembled into the bundles for use in the running application. Bundle formation is based on the *bundle declaration*, which is a special file that lists the blocks to bundle. Here is an example of a bundle declaration:
