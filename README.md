@@ -1,26 +1,26 @@
 # System.Web.Bem
 
-System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
+System.Web.Bem is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MVC projects.
 
-- [Быстрый старт](#Быстрый-старт)
-- [Подробнее](#Подробнее)
-    - [Специфика БЭМ-проектов](#Специфика-БЭМ-проектов)
-    - [Структура проекта](#Структура-проекта)
-    - [Сборка](#Сборка)
-    - [Серверная шаблонизация BEMHTML](#Серверная-шаблонизация-bemhtml)
-    - [Подключение библиотек блоков](#Подключение-библиотек-блоков)
-- [Публикации](#Публикации)
+- [Quick start](#quick-start)
+- [Details](#details)
+    - [Specifics of BEM projects](#specifics-of-bem-projects)
+    - [Project structure](#project-structure)
+    - [Building the bundles](#building-the-bundles)
+    - [Server-side templating with BEMHTML](#server-side-templating-with-bemhtml)
+    - [External block libraries usage](#external-block-libraries-usage)
+- [Articles](#articles)
 
-## Быстрый старт
+## Quick start
 
-1. Убедитесь, что на компьютере, где будет *выполняться сборка* проекта, установлен [node.js](https://nodejs.org/en/) (при этом для *работы приложения* устанавливать node.js не обязательно).
+1. Make sure that [node.js](https://nodejs.org/en/) is installed on the computer that will assemble the project (node.js is not required on the production server).
 
-1. Установите [пакет System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/) в свой проект ASP.NET MVC.
+1. Install the [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem/) into your ASP.NET MVC project.
   ```bash
   PM> Install-Package System.Web.Bem -Pre
   ```
 
-1. Верните из метода контроллера экземпляр класса `BemhtmlResult`, передав ему в конструктор нужный bemjson.
+1. Return the instance of the `BemhtmlResult` class from the controller's method and send the necessary bemjson to the `BemhtmlResult` constructor.
   ```cs
   using System.Web.Bem;
   ...
@@ -33,56 +33,56 @@ System.Web.Bem - БЭМ-инфрастурктура для ASP.NET MVC.
   }
   ```
 
-## Подробнее
+## Details
 
-### Специфика БЭМ-проектов
-[БЭМ](https://bem.info) (Блок-Элемент-Модификатор) - это придуманная в [Яндексе](https://yandex.ru) методология разработки веб-приложений, в основе которой лежит компонентный подход. БЭМ - это также набор инструментов для удобной разработки в соответствии с принципами методологии. БЭМ помогает быстрее разрабатывать сайты и поддерживать их долгое время.
+### Specifics of BEM projects
+[BEM](https://en.bem.info) (Block-Element-Modifier) is the frontend development methodology, which was created in [Yandex](https://yandex.com/company). It is based on the component approach. BEM also includes a set of tools that make development with the BEM methodology more convenient. BEM helps you develop sites faster and support them for a long time.
 
-Согласно правилам БЭМ, приложение состоит из независимых блоков, которые лежат в отдельных папках. Каждый блок реализован в нескольких технологиях (шаблоны, стили, клиентский код). Чтобы код блоков мог работать в приложении, блоки собирают в бандлы.
+According to the BEM principles, an application consists of independent blocks, which are located in separate folders. Each block is implemented in several technologies (templates, styles, client-side code). Blocks should be assembled into the bundles to use them in the running application.
 
-Декларация бандла - файл с перечислением блоков, которые должны попасть в бандл. На основе декларации сборщик собирает бандл, учитывая зависимости блоков и уровни переопределения. Бандл собирается отдельно для каждой технологии. Во время работы приложения бандл шаблонов используется для формирования html (на сервере и клиенте), бандлы js и css подключаются на страницы и используются на клиенте.
+A bundle declaration is a file that lists the blocks that should be in a bundle. The assembler builds the bundle based on this declaration, accounting for block dependencies and redefinition levels. A separate bundle is made for each technology. When the application is running, the bundle of templates is used for generating HTML (on the server and the client side), while the JS and CSS bundles are included in the pages and used on the client side.
 
-**System.Web.Bem** - БЭМ-инфрастурктура для ASP.NET MVC проектов. При установке в проект [NuGet пакета System.Web.Bem](https://www.nuget.org/packages/System.Web.Bem/):
-- добавляется папка `Bem` с файловой структурой БЭМ проекта;
-- из npm ставится сборщик БЭМ-проектов [enb](https://ru.bem.info/toolbox/enb/) и настройки для сборки БЭМ-бандлов при компиляции ASP.NET MVC проекта;
-- подключается C# библиотека `System.Web.Bem` для серверной шаблонизации во время работы приложения.
+**System.Web.Bem** is the BEM infrastructure for ASP.NET MVC projects. When the [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem) is installed into the project:
+- The `Bem` folder is created with the project's file structure.
+- The [enb](https://en.bem.info/toolbox/enb) assembler for BEM projects is installed from npm, and the enb configuration file is created.
+- The `System.Web.Bem` library for .NET is integrated for using BEMHTML templates on the server side.
 
-### Структура проекта
+### Project structure
 
 ```
-<Project root>                  // корневая папка проекта
-├─ Bem                          // папка БЭМ-проекта
+<Project root>
+├─ Bem                          // BEM files folder
 │  ├─ .enb
-│  │  └─ make.js                // конфиг сборщика enb
-│  ├─ desktop.blocks            // уровень переопределения, внутри находятся блоки
+│  │  └─ make.js                // enb configuration file
+│  ├─ desktop.blocks            // redefinition level (blocks are located inside)
 │  │  ├─ block-1 
 │  │  ├─ block-2 
 │  │  │  ... 
 │  │  └─ block-n 
-│  │     ├─ block-n.bemhtml.js  // реализация блока block-n в технологии bemhtml.js (шаблоны)
-│  │     ├─ block-n.css         // реализация блока block-n в технологии css 
+│  │     ├─ block-n.bemhtml.js  // implementation of 'block-n' in 'bemhtml.js' technology (templates)
+│  │     ├─ block-n.css         // implementation of 'block-n' in 'css' technology
 │  │     │  ...                 // ...
 │  │     └─ block-n.js
-│  ├─ desktop.bundles           // папка с бандлами проекта
+│  ├─ desktop.bundles           // folder for the bundles
 │  │  ├─ bundle-1 
 │  │  ├─ bundle-2 
 │  │  │  ... 
 │  │  └─ bundle-n 
-│  │     └─ bundle-n.bemdecl.js // декларация бандла bundle-n 
-│  └─ levels.js                 // список уровней переопределения
+│  │     └─ bundle-n.bemdecl.js // declaration of the bundle named 'bundle-n'
+│  └─ levels.js                 // list of redefinition levels
 │  ...
-├─ Controllers                  // Controllers, Models, Views - стандартные папки ASP.NET MVC
+├─ Controllers                  // Controllers, Models, Views - the standard ASP.NET MVC folders
 ├─ Models
 ├─ Views
 │  ...
-├─ package.json                 // конфиг npm
-└─ Web.config                   // конфиг вашего приложения
+├─ package.json                 // npm configuration file
+└─ Web.config                   // configuration file of your application
 ```
 
-### Сборка
-**Внимание! Для сборки проекта необходимо, чтобы на компьютере был установлен [node.js](https://nodejs.org/en/). Для работы приложения на сервере устанавливать node.js нет необохдимости.**
+### Building the bundles
+**Note! Node.js is required for project building. Node.js on the production server is not required.**
 
-Чтобы код блоков мог работать в приложении, блоки собирают в бандлы. Сборка бандла выполняется на основе декларации - специального файла с расширением `bemdecl.js`, где перечислены блоки, которые должны попасть в бандл. Пример декларации бандла:
+Blocks should be assembled into the bundles for use in the running application. Bundle formation is based on the *bundle declaration*, which is a special file that lists the blocks to bundle. Here is an example of a bundle declaration:
 
 ```javascript
 exports.blocks = [
@@ -90,32 +90,35 @@ exports.blocks = [
   { name: 'block2' }
 ];
 ```
-Декларации находятся в папке `/Bem/desktop.bundles`, каждый бандл в своей папке. Например, декларация бандла `default` должна находиться в файле `/Bem/desktop.bundles/default/default.bemdecl.js`. 
 
-Сборка выполняется специальной утилитой [enb](https://ru.bem.info/toolbox/enb/), которая добавляется в проект при установке NuGet пакета System.Web.Bem. Во время установки пакета настраивается автоматический запуск enb при сборке всего проекта через MsBuild. Таким образом, когда вы собираете ASP.NET MVC проект в Visual Studio, вместе с компиляцией c# кода будет запущена и сборка БЭМ-бандлов. Во время сборки ищутся все декларации внутри `/Bem/desktop.bundles` и для каждой из них собираются бандлы технологий (шаблоны, js, css). 
+Declarations should be located in the `/Bem/desktop.bundles` folder, each bundle is in its own folder. The declaration file name should match the name of the bundle and it should have the `bemdecl.js` extension. For example, the declaration of the `default` bundle should be located in the file `/Bem/desktop.bundles/default/default.bemdecl.js`.
 
-Бандлы технологий имеют имя `<bundle_name>.<tech_ext>` и сохраняются в папку, где находится декларация. Например, файл шаблонов (bemhtml.js) для бандла `default` будет иметь путь `/Bem/desktop.bundles/default/default.bemhtml.js`. Таким образом, после сбоки проекта вы будете наблюдать примерно такую картину:
+Assembly is performed by the [enb](https://en.bem.info/toolbox/enb) tool, which is added to the project during installation of the System.Web.Bem package from NuGet. The project settings are also changed during the package installation, to make enb run automatically after MsBuild is executed. Thus, when you run the build of your ASP.NET MVC project in Visual Studio, the BEM bundles are assembled automatically when C# code is compiled. When building the project, all declarations are found in the `/Bem/desktop.bundles` folder and the technology bundles (templates, styles, and JavaScript) are assembled for each of them.
+
+Bundles of technologies should be named `<bundle_name>.<tech_ext>` and should be saved in the folder where the declaration is located. E.g. the templates file (`bemhtml.js`) for the `default` bundle should have the path `/Bem/desktop.bundles/default/default.bemhtml.js`. So after building the project you will see something like this:
+
 ```
 <Project root>
 ├─ Bem
 │  ├─ ...
 │  └─ desktop.bundles
 │     ├─ default 
-│     │  ├─ default.bemdecl.js  // декларация бандла
-│     │  ├─ default.bemhtml.js  // бандл с шаблонами 
-│     │  ├─ default.js          // бандл с клиентским кодом 
-│     │  └─ default.css         // бандл со стилями 
-│     │  └─ ...                 // бандлы других технологий
+│     │  ├─ default.bemdecl.js  // bundle declaration
+│     │  ├─ default.bemhtml.js  // templates bundle 
+│     │  ├─ default.js          // client-side code bundle 
+│     │  └─ default.css         // styles bundle 
+│     │  └─ ...                 // bundles of other technologies
 │     └─ ...
 └─ ...
 ```
-Во время работы приложения бандл шаблонов используется для формирования html (на сервере и клиенте), бандлы js и css подключаются на страницы и используются на клиенте. Во время серверной шаблонизации будет использоваться бандл с шаблонами, указанный в настройках приложения. Бандлы js и css нужно самостоятельно подключить на страницу.
 
-### Серверная шаблонизация BEMHTML
+When the application is running, the bundle of templates is used for generating HTML (on the server and the client side), while JS bundles and style bundles are included to the pages and used on the client side. Server-side HTML generation uses the bundle of templates specified in application settings. The client-side bundles (JS and CSS) should be included into the page manually.
 
-[BEMHTML](https://github.com/bem/bem-xjst) - специальный шаблонизатор, который удобно использовать в БЭМ-проектах.
+### Server-side templating with BEMHTML
 
-При установке NuGet пакета System.Web.Bem в проект будет добавлена .NET библиотека для шаблонизации BEMHTML шаблонов на стороне сервера во время работы приложения. Чтобы передать на клиент страницу, сформированную с помощью bemhtml шаблонов, просто верните из контроллера экземпляр класса `BemhtmlResult`, передав ему в конструктор нужный bemjson.
+[BEMHTML](https://github.com/bem/bem-xjst) is a special template engine that is convenient for BEM projects.
+
+When the NuGet [System.Web.Bem package](https://www.nuget.org/packages/System.Web.Bem) is installed in the project, a reference to the System.Web.Bem .NET library is added in order to use BEMHTML templates on the server side. To generate an HTML using BEMHTML on the server, just return an instance of the `BemhtmlResult` class from the controller's method and send the necessary *bemjson* to the `BemhtmlResult` constructor.
 
 ```cs
 using System.Web.Bem;
@@ -129,67 +132,68 @@ public class DefaultController : Controller
 }
 ```
 
-Если нужно внутри Razor-шаблона вставить БЭМ-блок, используйте хелпер `@Html.Bem`, передав ему нужный bemjson.
+If you need to render a BEM block from the Razor template you have to use the `@Html.Bem` helper and provide the necessary bemjson for it.
 ```cs
 @Html.Bem(new { block = "my-block", data = Model })
 ```
 
-В разделе `bemSettings` файла Web.config вы можете настраивать, каким способом будут выбираться бандлы с bemhtml шаблонами для http-запросов. Возможны 3 варианта мэппинга запросов на бандлы:
+In the `bemSettings` section of the Web.config file, you can set up how to select template bundles for HTTP requests. There are three possible ways to map requests to bundles:
 
-1. Один общий бандл на всё приложение - его название можно задать в параметре `DefaultBundle` (по умолчанию `default`):
+1. A single bundle per application. You can set its name in the `DefaultBundle` parameter (set to `default` by default):
 
   ```xml
   <bemSettings Mapper="Single" DefaultBundle="index" />
   ```
-1. Отдельный бандл для каждого серверного контроллера:
+1. A separate bundle for each server-side controller:
 
   ```xml
   <bemSettings Mapper="ByController" />
   ```
-  Название бандла определяется по названию контроллера: слова разделяются дефисами, приводятся к нижнему регистру, удаляется суффикс "controller" и добавляется префикс `p-` (например, `MainPageController` → `p-main-page`).
-1. Собственный мэппер - есть возможность написать свой класс мэппера и указать его название в параметре `Mapper`:
+  The bundle name is formed from the controller name. All words are separated by dashes, all letters are changed to lowercase, the `controller` suffix is deleted, and the `p-` prefix is added (for example, `MainPageController` → `p-main-page`).
+1. A custom mapper - you can write your own mapper class and set its name in the `Mapper` parameter:
 
   ```xml
   <bemSettings Mapper="MyApplication.MyNamespace.InnerNamespace.MyMapperClass" />
   ```
-Класс мэппера должен быть унаследован от базового класса [System.Web.Bem.BundleMappers.Mapper](System.Web.Bem/BundleMappers/Mapper.cs) и реализовывать метод `abstract string GetBundleName(ControllerContext context)`, получающий на вход контекст запроса и возвращающий название бандла. Также, при желании, можно переопределить метод `virtual string GetBundlePath(string bundleName)`, возвращающий по названию бандла путь к файлу с bemhtml шаблонами (по умолчанию формируется путь `<RootDir>\<bundleName>\<bundleName>.bemhtml.js`)
+Your mapper class must be inherited from the base class named [System.Web.Bem.BundleMappers.Mapper](System.Web.Bem/BundleMappers/Mapper.cs) and it must implement the `abstract string GetBundleName(ControllerContext context)` method, which receives a request context as an input parameter and returns the bundle name for this request. Also you can owerride the `virtual string GetBundlePath(string bundleName)` method, which returns the full path to the bemhtml bundle for the bundle name (by default the path `<RootDir>\<bundleName>\<bundleName>.bemhtml.js` is formed).
 
-Также в настройках можно задать корневую папку для БЭМ-бандлов проекта (по умолчанию, `~/Bem/desktop.bundles`):
+You can also set up the default root directory for BEM bundles (`~/Bem/desktop.bundles` by default):
 
 ```
 <bemSettings RootDir="~/public" />
 ```
 
-### Подключение библиотек блоков
+### External block libraries usage
 
-Вы можете подключать в свой проект сторонние библиотеки с блоками и использовать их. Для этого скопируйте файлы блоков в свой проект и добавьте новые папки с блоками в список уровней переопределения.
+You can add third-party block libraries to your project and use them. To do this, copy the block files into your project and add the copied folders to the list of redefinition levels.
 
-Рекомендуется размещать сторонние библиотеки блоков в папке `/Bem/libs`. Например:
+We recommend putting third-party blocks inside the `/Bem/libs` folder. For example:
+
 ```
 └─ Bem
-   └─ libs                        // сторонние библиотеки блоков
-      ├─ my-ext-block-library     // папка библиотеки
-      │  ├─ common.blocks         // уровень переопределения
+   └─ libs                        // third-party block libraries
+      ├─ my-ext-block-library     // library folder
+      │  ├─ common.blocks         // redefinition level
       │  │   ├─ block1
       │  │   └─ block2
-      │  ├─ desktop.blocks        // уровень переопределения
+      │  ├─ desktop.blocks        // other redefinition level
       │  └─ ...                 
       │  ...
-      └─ other-ext-block-library  // папка библиотеки
+      └─ other-ext-block-library  // other library folder
 ```
 
-Список уровней переопределения находится в файле `/Bem/levels.js`. 
+The list of redefinition levels is located in the `/Bem/levels.js` file. 
 
 ```
 ├─ Bem
 │  ├─ desktop.blocks
 │  ├─ desktop.bundles
-│  ├─ libs                        // сторонние библиотеки блоков
-│  └─ levels.js                   // список уровней переопределения
+│  ├─ libs                        // third-party block libraries
+│  └─ levels.js                   // list of redefinition levels
 └─ ...
 ```
 
-По сути это список папок, из которых будут браться файлы блоков при сборке. Необходимо добавить в него папки уровней переопределения скопированных вами внешних библиотек. Для приведенного выше примера структуры файловой системы должно получиться примерно так:
+This is actually a list of folders where files will be taken from for building the project. You must add the redefinition levels of third-party libraries you are using to this list. For the file structure example which is described above, the list of redefinition levels should be similar to this:
 
 ```javascript
 module.exports = [
@@ -201,14 +205,14 @@ module.exports = [
 ];
 ```
 
-Для удобства подключения в NuGet были выложены библиотеки [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) и [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md). Чтобы добавить их в свой проект установите NuGet пакеты [bem-core](https://www.nuget.org/packages/bem-core/), [bem-components](https://www.nuget.org/packages/bem-components/):
+The block libraries [bem-core](https://github.com/bem/bem-core/blob/v3/README.ru.md) and [bem-components](https://github.com/bem/bem-components/blob/v3/README.ru.md) were published in NuGet for easy installation into any project. To use it just install [bem-core](https://www.nuget.org/packages/bem-core/) and [bem-components](https://www.nuget.org/packages/bem-components/) NuGet packages:
 ```
 Install-Package bem-core
 Install-Package bem-components
 ```
-Уровни переопределения библиотек bem-core и bem-components [уже перечислены](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) в файле `levels.js`, но по умолчанию закомментированы. Раскомментриуйте их.
+Redefinition levels of bem-core and bem-components libraries [already exist](https://github.com/dotnet-bem/system-web-bem/blob/master/System.Web.Bem/package/content/Bem/levels.js#L2-L10) in the `levels.js` file but they are commented out. Uncomment them to use those libraries.
 
-## Публикации
-- [Скрещиваем БЭМ и .NET](https://ru.bem.info/forum/1007/)
-- [Продолжаем скрещивать БЭМ и .NET](https://ru.bem.info/forum/1048/)
-- [Хакатон: БЭМ-инфраструктура для .NET](https://ru.bem.info/forum/1065/)
+## Articles
+- [Combine BEM with .NET](https://ru.bem.info/forum/1007/) (in Russian)
+- [Сontinue to combine BEM with .NET](https://ru.bem.info/forum/1048/) (in Russian)
+- [Hackathon: BEM-infrastructure for .NET](https://ru.bem.info/forum/1065/) (in Russian)
