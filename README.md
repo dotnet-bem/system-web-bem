@@ -11,6 +11,8 @@ System.Web.Bem is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MVC 
     - [External block libraries usage](#external-block-libraries-usage)
 - [Articles](#articles)
 
+This README is also available in [Russian](README.ru.md).
+
 ## Quick start
 
 1. Make sure that [node.js](https://nodejs.org/en/) is installed on the computer that will assemble the project (node.js is not required on the production server).
