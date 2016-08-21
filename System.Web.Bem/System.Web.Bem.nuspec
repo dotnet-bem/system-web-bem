@@ -6,8 +6,8 @@
     <title>System.Web.Bem</title>
     <authors>Dmitry Andriyanov</authors>
     <owners>dima117</owners>
-    <licenseUrl>https://github.com/dima117/bemtest-net/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/dima117/bemtest-net</projectUrl>
+    <licenseUrl>https://github.com/dotnet-bem/system-web-bem/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/dotnet-bem/system-web-bem</projectUrl>
     <iconUrl>https://avatars2.githubusercontent.com/u/20265083</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>BEM infrastructure for ASP.NET MVC applications</description>
