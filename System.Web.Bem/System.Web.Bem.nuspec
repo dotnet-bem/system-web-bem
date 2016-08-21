@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>System.Web.Bem</id>
-    <version>1.0.0-beta1</version>
+    <version>1.0.0-beta2</version>
     <title>System.Web.Bem</title>
     <authors>Dmitry Andriyanov</authors>
     <owners>dima117</owners>
@@ -19,7 +19,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\System.Web.Bem.dll" target="lib\net452" />
+    <file src="bin\System.Web.Bem.dll" target="lib\net45" />
     <file src="package\content\**\*.*" target="content" />
     <file src="package\build\*.*" target="build" />
     <file src="package\tools\*.*" target="tools" />
