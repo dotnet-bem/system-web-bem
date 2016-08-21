@@ -1,3 +1,5 @@
+This README is also available in [Russian](README.ru.md).
+
 # System.Web.Bem
 
 System.Web.Bem is a BEM (Block-Element-Modifier) infrastructure for ASP.NET MVC projects.
